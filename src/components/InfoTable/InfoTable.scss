@@ -1,0 +1,145 @@
+.infoTable {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 700px;
+  margin: auto;
+}
+
+.chakraTable {
+  background: white;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+  .chakra-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .chakra-subtitle {
+    font-size: 14px;
+    color: gray;
+    margin-bottom: 10px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 3px 3px;
+    text-align: center;
+  }
+
+  th, td {
+    padding: 10px;
+    background: white;
+    border: none;
+    white-space: nowrap; // 🔹 Запрещает перенос строк
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  tbody tr {
+    background: white;
+  }
+
+  tbody tr td {
+    background-color: inherit;
+  }
+
+  .totalRow {
+    font-weight: bold;
+    color: black;
+    td{
+      background-color: aliceblue;
+    }
+  }
+}
+
+  .personalInfo {
+    width: 100%;
+    max-width: 600px;
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: start; // Выравниваем все элементы сверху
+    position: relative;
+    .horizontalLine{
+      position: absolute;
+      border-left: 1px solid black;
+      height: 89%;
+      top: 6%;
+      left: 48%;
+      transform: translateX(-51%);
+    }
+    .personalInfoContent {
+        display: flex;
+        flex-direction: column;
+        height: 100%; // Даем контейнеру одинаковую высоту
+        justify-content: space-between; // Раздвигаем контент равномерно
+
+        .personalInfoLeftTop {
+            flex-grow: 1; // Верхняя часть растягивается равномерно
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; // Начинаем с верха
+
+            span {
+                font-weight: 700;
+            }
+            p {
+                margin: 5px 0;
+                font-weight: 200;
+                font-size: 15px;
+                margin-bottom: 20px;
+            }
+        }
+
+        .personalInfoLeftMiddle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            .elements {
+                display: flex;
+                flex-direction: column;
+                gap: 50px;
+                font-size: 18px;
+
+                .sky span, .earth span {
+                    border: 2px solid black;
+                    padding: 3px 6px;
+                    border-radius: 50%;
+                }
+            }
+            .result {
+                border: 2px solid black;
+                padding: 3px 6px;
+                border-radius: 50%;
+            }
+        }
+
+        .personalInfoLeftBottom {
+            flex-grow: 1; // Нижняя часть растягивается равномерно
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end; // Чтобы нижний блок выровнялся
+            min-height: 110px; // Чтобы не схлопывался при маленьком контенте
+
+            .spirit {
+                display: flex;
+            }
+
+            .question {
+                font-size: 12px;
+                font-weight: 100;
+            }
+        }
+    }
+
+  }
+  

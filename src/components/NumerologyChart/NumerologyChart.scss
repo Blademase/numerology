@@ -1,0 +1,213 @@
+$primary-color: #007bff;
+$primary-hover: #0056b3;
+$bg-color: white;
+$border-radius: 20px;
+$shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+.numerlogyChart {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.shema {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  padding: 20px;
+  background: $bg-color;
+  border-radius: $border-radius;
+  box-shadow: $shadow;
+
+  img {
+    width: 100%;
+  }
+
+  .circle {
+    position: absolute;
+    width: fit-content;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.birthdate-container {
+   display: flex;
+   position: relative;
+  justify-content: center;
+  gap: 15px;
+  padding: 20px;
+  background: $bg-color;
+  border-radius: $border-radius;
+  box-shadow: $shadow;
+  padding-top:50px ;
+  padding-bottom: 70px;
+   span{
+   position: absolute;
+   left: 50%;
+   transform: translateX(-50%);
+   top: 10px;
+  }
+  .select-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .select-label {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 5px;
+      text-align: center;
+    }
+
+    .custom-select {
+      width: 100px;
+      padding: 10px;
+      border-radius: 25px;
+      border: 1px solid #ccc;
+      background: $bg-color;
+      text-align: center;
+      font-size: 16px;
+      appearance: none;
+      outline: none;
+    }
+  }
+}
+
+.calculate-button {
+   position: absolute;
+  width: 130px;
+  height: 40px;
+  font-size: 16px;
+  color: white;
+  background: $primary-color;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 0.3s;
+bottom: 10px;
+  &:hover {
+    background: $primary-hover;
+  }
+}
+
+// Размеры кругов
+.circle {
+  &.small {
+    height: 10px;
+    width: 10px;
+  }
+
+  &.medium {
+    height: 20px;
+    width: 20px;
+  }
+
+  &.large {
+    height: 30px;
+    width: 30px;
+  }
+
+  &.outlined {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px red;
+  }
+}
+
+// Позиционирование элементов
+@mixin circle-position($top, $left: auto, $right: auto, $bg-color) {
+  top: $top;
+  left: $left;
+  right: $right;
+  background-color: $bg-color;
+}
+
+// Верхние элементы
+.top1 { @include circle-position(0, 47.5%, auto, white); }
+.top2 { @include circle-position(8%, 48%, auto, rgb(198, 153, 153)); }
+.top3 { @include circle-position(17%, 48.2%, auto, rgb(121, 2, 2)); }
+.top4 { @include circle-position(30%, 48.2%, auto, rgb(0, 25, 189)); }
+
+// Верхний правый угол
+.topRight1 { @include circle-position(14%, auto, 15.3%, rgb(72, 198, 133)); }
+.topRight2 { @include circle-position(19%, auto, 19.6%, rgb(165, 170, 204)); }
+.topRight3 { @include circle-position(24%, auto, 23.6%, rgb(165, 170, 204)); }
+
+// Правая сторона
+.right1 { @include circle-position(47.4%, auto, 1.6%, rgb(165, 170, 204)); }
+.right2 { @include circle-position(48.4%, auto, 10.6%, rgb(165, 170, 204)); }
+.right3 { @include circle-position(48.4%, auto, 20.6%, rgb(165, 170, 204)); }
+.right4 { @include circle-position(48.4%, auto, 34.6%, rgb(165, 170, 204)); }
+.right5 { @include circle-position(48.4%, auto, 40.6%, rgb(165, 170, 204)); }
+
+// Нижний правый угол
+.bottomRight1 { @include circle-position(80%, auto, 15%, rgb(119, 129, 192)); }
+.bottomRight2 { @include circle-position(76.4%, auto, 20.6%, rgb(60, 82, 224)); }
+.bottomRight3 { @include circle-position(68%, auto, 26.6%, rgb(49, 51, 66)); }
+.bottomRight4 { @include circle-position(62%, auto, 34.5%, rgb(113, 191, 12)); }
+.bottomRight5 { @include circle-position(66%, auto, 36.6%, rgb(83, 199, 70)); }
+.bottomRight6 { @include circle-position(60.8%, auto, 31%, rgb(124, 0, 62)); }
+
+// Нижние элементы
+.bottom1 { @include circle-position(93.4%, auto, 47.7%, rgb(125, 192, 0)); }
+.bottom2 { @include circle-position(86%, auto, 48%, rgb(228, 223, 223)); }
+.bottom3 { @include circle-position(77%, auto, 47.7%, rgb(214, 155, 45)); }
+
+// Нижний левый угол
+.bottomLeft1 { @include circle-position(80%, 15.7%, auto, rgb(244, 153, 73)); }
+.bottomLeft2 { @include circle-position(75%, 20%, auto, rgb(74, 190, 144)); }
+.bottomLeft3 { @include circle-position(69%, 26%, auto, rgb(165, 27, 60)); }
+
+// Левая сторона
+.left1 { @include circle-position(47%, 2%, auto, rgb(181, 29, 151)); }
+.left2 { @include circle-position(48%, 10%, auto, rgb(1, 24, 173)); }
+.left3 { @include circle-position(48%, 18.5%, auto, rgb(1, 20, 141)); }
+.left4 { @include circle-position(48%, 33%, auto, rgb(55, 201, 62)); }
+
+// Верхний левый угол
+.topLeft1 { @include circle-position(14.8%, 15.5%, auto, rgb(126, 190, 17)); }
+.topLeft2 { @include circle-position(21%, 21.5%, auto, rgb(149, 0, 0)); }
+.topLeft3 { @include circle-position(26.8%, 27%, auto, rgb(10, 20, 85)); }
+
+// Контейнер для выбора даты
+.birthdate-picker {
+  text-align: center;
+
+  .select-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+
+    
+    
+  }
+
+  .custom-select {
+    min-width: 100px;
+    border-radius: 20px;
+  }
+
+  .calculate-button {
+    margin-top: 15px;
+    border-radius: 20px;
+  }
+}
+::-webkit-scrollbar {
+   width: 8px;
+ }
+
+ ::-webkit-scrollbar-track {
+   background: #f1f1f1;
+   border-radius: 10px;
+ }
+
+ ::-webkit-scrollbar-thumb {
+   background: #007bff;
+   border-radius: 10px;
+ }
+
+ ::-webkit-scrollbar-thumb:hover {
+   background: #0056b3;
+ } 
