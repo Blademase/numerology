@@ -21,7 +21,9 @@ const total = chakraData.reduce(
   { physics: 0, energy: 0, emotions: 0 }
 );
 
-const InfoTable = () => {
+const InfoTable = ({ numbers }) => {
+  console.log('infotable',numbers);
+  
   return (
     <div className="infoTable">
       {/* Таблица чакр */}
@@ -39,21 +41,27 @@ const InfoTable = () => {
             </tr>
           </thead>
           <tbody>
-            {chakraData.map((chakra, index) => (
-              <tr key={index} style={{ backgroundColor: chakra.color }}>
-                <td>{chakra.name}</td>
-                <td>{chakra.physics}</td>
-                <td>{chakra.energy}</td>
-                <td>{chakra.emotions}</td>
-              </tr>
-            ))}
+            {chakraData.slice().reverse().map((chakra, index) => { 
+              const oKey = `o${7 - index}`; // Меняем порядок o7 → o1
+              const pKey=`p${7-index}`;
+              const qKey=`q${7-index}`;
+              
+              return (
+                <tr key={index} style={{ backgroundColor: chakra.color }}>
+                  <td>{chakra.name}</td>
+                  <td>{numbers?.[oKey] ?? 0}</td> {/* Используем динамический ключ */}
+                  <td>{numbers?.[pKey] ?? 0}</td>
+                  <td>{numbers?.[qKey] ?? 0}</td>
+                </tr>
+              );
+            })}
           </tbody>
           <tfoot>
             <tr className="totalRow">
               <td>ИТОГО</td>
-              <td>{total.physics}</td>
-              <td>{total.energy}</td>
-              <td>{total.emotions}</td>
+              <td>{numbers?.o ?? 0}</td>
+              <td>{numbers?.p ?? 0}</td>
+              <td>{numbers?.q ?? 0}</td>
             </tr>
           </tfoot>
         </table>
@@ -69,18 +77,18 @@ const InfoTable = () => {
           <div className="personalInfoLeftMiddle">
             <div className="elements">
               <div className="sky">
-                Небо: <span>10</span>
+                Небо: <span>{numbers?.r ?? 0}</span>
               </div>
               <div className="earth">
-                Земля: <span>10</span>
+                Земля: <span>{numbers?.s ?? 0}</span>
               </div>
             </div>
             <img src={bracket} alt="Bracket" />
-            <div className="result">16</div>
+            <div className="result">{numbers?.y ?? 0}</div>
           </div>
           <div className="personalInfoLeftBottom">
             <div className="spirit">
-              Духовная гармония: <span>10</span>
+              Духовная гармония: <span>{numbers?.w ?? 0}</span>
             </div>
             <div className="question">Духовный зачет. Кто я для бога? Где божественное во мне?</div>
           </div>
@@ -96,18 +104,18 @@ const InfoTable = () => {
           <div className="personalInfoLeftMiddle">
             <div className="elements">
               <div className="sky">
-                M: <span>10</span>
+                M: <span>{numbers?.t ?? 0}</span>
               </div>
               <div className="earth">
-                Ж: <span>10</span>
+                Ж: <span>{numbers?.u ?? 0}</span>
               </div>
             </div>
             <img src={bracket} alt="Bracket" />
-            <div className="result">16</div>
+            <div className="result">{numbers?.v ?? 0}</div>
           </div>
           <div className="personalInfoLeftBottom">
             <div className="spirit">
-              Планетарное: <span>10</span>
+              Планетарное: <span>{numbers?.x ?? 12}</span>
             </div>
             <div className="question">Планетарное предназначение человека</div>
           </div>

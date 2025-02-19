@@ -111,14 +111,22 @@
                 font-size: 18px;
 
                 .sky span, .earth span {
+                  justify-content: center;
+                  align-items: center;
                     border: 2px solid black;
                     padding: 3px 6px;
                     border-radius: 50%;
+                    
                 }
             }
             .result {
+              display: flex;
+              justify-content: center;
+              align-items: center;
                 border: 2px solid black;
                 padding: 3px 6px;
+                width: 30px;
+                    height: 30px;
                 border-radius: 50%;
             }
         }
