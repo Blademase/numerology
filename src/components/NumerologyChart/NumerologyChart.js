@@ -109,24 +109,24 @@ const NumerologyChart = () => {
       <div className="shema">
         <img src={cals}  alt="Numerology Chart" />
 
-        <div className="top1 circle large">{numbers[0]}</div>
-        <div className="top2 circle medium">{numbers[1]}</div>
-        <div className="top3 circle medium">{numbers[2]}</div>
-        <div className="top4 circle medium">{numbers[3]}</div>
+        <div className="top1 circle large outlined">{numbers[0]}</div>
+        <div className="top2 circle medium outlined">{numbers[1]}</div>
+        <div className="top3 circle small outlined">{numbers[2]}</div>
+        <div className="top4 circle small outlined">{numbers[3]}</div>
 
-        <div className="topRight1 circle large">{numbers[4]}</div>
-        <div className="topRight2 circle medium">{numbers[5]}</div>
-        <div className="topRight3 circle medium">{numbers[6]}</div>
+        <div className="topRight1 circle large outlined">{numbers[4]}</div>
+        <div className="topRight2 circle medium outlined">{numbers[5]}</div>
+        <div className="topRight3 circle medium outlined">{numbers[6]}</div>
 
-        <div className="right1 circle large">{numbers[7]}</div>
-        <div className="right2 circle medium">{numbers[8]}</div>
-        <div className="right3 circle medium">{numbers[9]}</div>
-        <div className="right4 circle medium">{numbers[10]}</div>
-        <div className="right5 circle medium">{numbers[11]}</div>
+        <div className="right1 circle large outlined">{numbers[7]}</div>
+        <div className="right2 circle medium outlined">{numbers[8]}</div>
+        <div className="right3 circle medium outlined">{numbers[9]}</div>
+        <div className="right4 circle medium outlined">{numbers[10]}</div>
+        <div className="right5 circle medium outlined">{numbers[11]}</div>
 
-        <div className="bottomRight1 circle large">{numbers[12]}</div>
-        <div className="bottomRight2 circle medium">{numbers[13]}</div>
-        <div className="bottomRight3 circle medium">{numbers[14]}</div>
+        <div className="bottomRight1 circle large outlined">{numbers[12]}</div>
+        <div className="bottomRight2 circle medium outlined">{numbers[13]}</div>
+        <div className="bottomRight3 circle medium outlined">{numbers[14]}</div>
         <div className="bottomRight4 circle medium">{numbers[15]}</div>
         <div className="bottomRight5 circle medium">{numbers[16]}</div>
         <div className="bottomRight6 circle medium">{numbers[17]}</div>
@@ -147,6 +147,79 @@ const NumerologyChart = () => {
         <div className="topLeft1 circle large">{numbers[4]}</div>
         <div className="topLeft2 circle medium">{numbers[5]}</div>
         <div className="topLeft3 circle medium">{numbers[6]}</div>
+
+
+        <div className="year21 number">1</div>
+        <div className="year22 number">2</div>
+        <div className="year23 number">3</div>
+        <div className="year24 number">4</div>
+        <div className="year25 number">5</div>
+        <div className="year26 number">6</div>
+        <div className="year27 number">7</div>
+        
+
+        
+        <div className="year31 number">1</div>
+        <div className="year32 number">2</div>
+        <div className="year33 number">3</div>
+        <div className="year34 number">4</div>
+        <div className="year35 number">5</div>
+        <div className="year36 number">6</div>
+        <div className="year37 number">7</div>
+
+      
+        <div className="year41 number">1</div>
+        <div className="year42 number">2</div>
+        <div className="year43 number">3</div>
+        <div className="year44 number">4</div>
+        <div className="year45 number">5</div>
+        <div className="year46 number">6</div>
+        <div className="year47 number">7</div>
+
+     
+        <div className="year51 number">1</div>
+        <div className="year52 number">2</div>
+        <div className="year53 number">3</div>
+        <div className="year54 number">4</div>
+        <div className="year55 number">5</div>
+        <div className="year56 number">6</div>
+        <div className="year57 number">7</div>
+
+ 
+        <div className="year61 number">1</div>
+        <div className="year62 number">2</div>
+        <div className="year63 number">3</div>
+        <div className="year64 number">4</div>
+        <div className="year65 number">5</div>
+        <div className="year66 number">6</div>
+        <div className="year67 number">7</div>
+
+        <div className="year71 number">1</div>
+        <div className="year72 number">2</div>
+        <div className="year73 number">3</div>
+        <div className="year74 number">4</div>
+        <div className="year75 number">5</div>
+        <div className="year76 number">6</div>
+        <div className="year77 number">7</div>
+
+        <div className="year1 number">1</div>
+        <div className="year2 number">2</div>
+        <div className="year3 number">3</div>
+        <div className="year4 number">4</div>
+        <div className="year5 number">5</div>
+        <div className="year6 number">6</div>
+        <div className="year7 number">7</div>
+
+        <div className="year11 number">1</div>
+        <div className="year12 number">2</div>
+        <div className="year13 number">3</div>
+        <div className="year14 number">4</div>
+        <div className="year15 number">5</div>
+        <div className="year16 number">6</div>
+        <div className="year17 number">7</div>
+
+
+
       </div>
     </div>
   );

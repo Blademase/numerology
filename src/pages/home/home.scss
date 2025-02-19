@@ -1,7 +1,10 @@
 .HomeRlc{
     display: flex;
     justify-content: center;
-    padding: 0 15%;
+    padding: 10px 15%;
+    flex-direction: column;
+    gap: 30px;
+    background-color: #ccc;
 .Home{
     display: flex;
     gap: 20px;

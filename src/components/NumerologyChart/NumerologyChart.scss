@@ -1,213 +1,300 @@
-$primary-color: #007bff;
-$primary-hover: #0056b3;
-$bg-color: white;
-$border-radius: 20px;
-$shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  $primary-color: #007bff;
+  $primary-hover: #0056b3;
+  $bg-color: white;
+  $border-radius: 20px;
+  $shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 
-.numerlogyChart {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.shema {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  padding: 20px;
-  background: $bg-color;
-  border-radius: $border-radius;
-  box-shadow: $shadow;
-
-  img {
-    width: 100%;
-  }
-
-  .circle {
-    position: absolute;
-    width: fit-content;
-    border-radius: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-}
-
-.birthdate-container {
-   display: flex;
-   position: relative;
-  justify-content: center;
-  gap: 15px;
-  padding: 20px;
-  background: $bg-color;
-  border-radius: $border-radius;
-  box-shadow: $shadow;
-  padding-top:50px ;
-  padding-bottom: 70px;
-   span{
-   position: absolute;
-   left: 50%;
-   transform: translateX(-50%);
-   top: 10px;
-  }
-  .select-container {
+  .numerlogyChart {
     display: flex;
     flex-direction: column;
-    align-items: center;
-
-    .select-label {
-      font-size: 14px;
-      color: #666;
-      margin-bottom: 5px;
-      text-align: center;
-    }
-
-    .custom-select {
-      width: 100px;
-      padding: 10px;
-      border-radius: 25px;
-      border: 1px solid #ccc;
-      background: $bg-color;
-      text-align: center;
-      font-size: 16px;
-      appearance: none;
-      outline: none;
-    }
-  }
-}
-
-.calculate-button {
-   position: absolute;
-  width: 130px;
-  height: 40px;
-  font-size: 16px;
-  color: white;
-  background: $primary-color;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-  transition: 0.3s;
-bottom: 10px;
-  &:hover {
-    background: $primary-hover;
-  }
-}
-
-// Размеры кругов
-.circle {
-  &.small {
-    height: 10px;
-    width: 10px;
-  }
-
-  &.medium {
-    height: 20px;
-    width: 20px;
-  }
-
-  &.large {
-    height: 30px;
-    width: 30px;
-  }
-
-  &.outlined {
-    box-shadow: 0 0 0 2px white, 0 0 0 3px red;
-  }
-}
-
-// Позиционирование элементов
-@mixin circle-position($top, $left: auto, $right: auto, $bg-color) {
-  top: $top;
-  left: $left;
-  right: $right;
-  background-color: $bg-color;
-}
-
-// Верхние элементы
-.top1 { @include circle-position(0, 47.5%, auto, white); }
-.top2 { @include circle-position(8%, 48%, auto, rgb(198, 153, 153)); }
-.top3 { @include circle-position(17%, 48.2%, auto, rgb(121, 2, 2)); }
-.top4 { @include circle-position(30%, 48.2%, auto, rgb(0, 25, 189)); }
-
-// Верхний правый угол
-.topRight1 { @include circle-position(14%, auto, 15.3%, rgb(72, 198, 133)); }
-.topRight2 { @include circle-position(19%, auto, 19.6%, rgb(165, 170, 204)); }
-.topRight3 { @include circle-position(24%, auto, 23.6%, rgb(165, 170, 204)); }
-
-// Правая сторона
-.right1 { @include circle-position(47.4%, auto, 1.6%, rgb(165, 170, 204)); }
-.right2 { @include circle-position(48.4%, auto, 10.6%, rgb(165, 170, 204)); }
-.right3 { @include circle-position(48.4%, auto, 20.6%, rgb(165, 170, 204)); }
-.right4 { @include circle-position(48.4%, auto, 34.6%, rgb(165, 170, 204)); }
-.right5 { @include circle-position(48.4%, auto, 40.6%, rgb(165, 170, 204)); }
-
-// Нижний правый угол
-.bottomRight1 { @include circle-position(80%, auto, 15%, rgb(119, 129, 192)); }
-.bottomRight2 { @include circle-position(76.4%, auto, 20.6%, rgb(60, 82, 224)); }
-.bottomRight3 { @include circle-position(68%, auto, 26.6%, rgb(49, 51, 66)); }
-.bottomRight4 { @include circle-position(62%, auto, 34.5%, rgb(113, 191, 12)); }
-.bottomRight5 { @include circle-position(66%, auto, 36.6%, rgb(83, 199, 70)); }
-.bottomRight6 { @include circle-position(60.8%, auto, 31%, rgb(124, 0, 62)); }
-
-// Нижние элементы
-.bottom1 { @include circle-position(93.4%, auto, 47.7%, rgb(125, 192, 0)); }
-.bottom2 { @include circle-position(86%, auto, 48%, rgb(228, 223, 223)); }
-.bottom3 { @include circle-position(77%, auto, 47.7%, rgb(214, 155, 45)); }
-
-// Нижний левый угол
-.bottomLeft1 { @include circle-position(80%, 15.7%, auto, rgb(244, 153, 73)); }
-.bottomLeft2 { @include circle-position(75%, 20%, auto, rgb(74, 190, 144)); }
-.bottomLeft3 { @include circle-position(69%, 26%, auto, rgb(165, 27, 60)); }
-
-// Левая сторона
-.left1 { @include circle-position(47%, 2%, auto, rgb(181, 29, 151)); }
-.left2 { @include circle-position(48%, 10%, auto, rgb(1, 24, 173)); }
-.left3 { @include circle-position(48%, 18.5%, auto, rgb(1, 20, 141)); }
-.left4 { @include circle-position(48%, 33%, auto, rgb(55, 201, 62)); }
-
-// Верхний левый угол
-.topLeft1 { @include circle-position(14.8%, 15.5%, auto, rgb(126, 190, 17)); }
-.topLeft2 { @include circle-position(21%, 21.5%, auto, rgb(149, 0, 0)); }
-.topLeft3 { @include circle-position(26.8%, 27%, auto, rgb(10, 20, 85)); }
-
-// Контейнер для выбора даты
-.birthdate-picker {
-  text-align: center;
-
-  .select-container {
-    display: flex;
     gap: 10px;
-    justify-content: center;
+  }
+  .css-1808mag-MuiPaper-root-MuiAccordion-root::before {
+ 
 
-    
-    
+    width: 0px;
   }
 
-  .custom-select {
-    min-width: 100px;
-    border-radius: 20px;
+  .shema {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+    background: $bg-color;
+    border-radius: $border-radius;
+    box-shadow: $shadow;
+    width: 530px;
+
+    img {
+      width: 100%;
+    }
+
+    .circle {
+      position: absolute;
+      width: fit-content;
+      border-radius: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .number{
+      position: absolute;
+       display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+  }
+
+  .birthdate-container {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+    background: $bg-color;
+    border-radius: $border-radius;
+    box-shadow: $shadow;
+    padding-top:50px ;
+    padding-bottom: 70px;
+    span{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 10px;
+    }
+    .select-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .select-label {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 5px;
+        text-align: center;
+      }
+
+      .custom-select {
+        width: 100px;
+        padding: 10px;
+        border-radius: 25px;
+        border: 1px solid #ccc;
+        background: $bg-color;
+        text-align: center;
+        font-size: 16px;
+        appearance: none;
+        outline: none;
+      }
+    }
   }
 
   .calculate-button {
-    margin-top: 15px;
-    border-radius: 20px;
+    position: absolute;
+    width: 130px;
+    height: 40px;
+    font-size: 16px;
+    color: white;
+    background: $primary-color;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: 0.3s;
+  bottom: 10px;
+    &:hover {
+      background: $primary-hover;
+    }
   }
-}
-::-webkit-scrollbar {
-   width: 8px;
- }
 
- ::-webkit-scrollbar-track {
-   background: #f1f1f1;
-   border-radius: 10px;
- }
+  // Размеры кругов
+  .circle {
+    &.small {
+      height: 22px;
+      width: 22px;
+    }
 
- ::-webkit-scrollbar-thumb {
-   background: #007bff;
-   border-radius: 10px;
- }
+    &.medium {
+      height: 30px;
+      width: 30px;
+    }
 
- ::-webkit-scrollbar-thumb:hover {
-   background: #0056b3;
- } 
+    &.large {
+      height: 40px;
+      width: 40px;
+    }
+
+    &.outlined {
+      box-shadow: 0 0 0 2px white, 0 0 0 3px black;
+    }
+  }
+
+  // Позиционирование элементов
+  @mixin circle-position($top, $left: auto, $right: auto, $bg-color) {
+    top: $top;
+    left: $left;
+    right: $right;
+    background-color: $bg-color;
+  }
+  @mixin number-position($top, $left: auto,$right:auto){
+  top:$top;
+  left: $left;
+  right: $right; 
+  }
+
+  // Верхние элементы
+  .top1 { @include circle-position(1%, 47.5%, auto, rgb(179, 152, 152)); }
+  .top2 { @include circle-position(8%, 48%, auto, rgb(198, 153, 153)); }
+  .top3 { @include circle-position(20%, 48.2%, auto, rgb(121, 2, 2)); }
+  .top4 { @include circle-position(30%, 48.2%, auto, rgb(0, 25, 189)); }
+
+  // Верхний правый угол
+  .topRight1 { @include circle-position(14%, auto, 15.3%, rgb(72, 198, 133)); }
+  .topRight2 { @include circle-position(19%, auto, 19.6%, rgb(165, 170, 204)); }
+  .topRight3 { @include circle-position(24%, auto, 23.6%, rgb(165, 170, 204)); }
+
+  // Правая сторона
+  .right1 { @include circle-position(47.4%, auto, 1.6%, rgb(165, 170, 204)); }
+  .right2 { @include circle-position(48.4%, auto, 10.6%, rgb(165, 170, 204)); }
+  .right3 { @include circle-position(48.4%, auto, 20.6%, rgb(165, 170, 204)); }
+  .right4 { @include circle-position(48.4%, auto, 34.6%, rgb(165, 170, 204)); }
+  .right5 { @include circle-position(48.4%, auto, 40.6%, rgb(165, 170, 204)); }
+
+  // Нижний правый угол
+  .bottomRight1 { @include circle-position(80%, auto, 15%, rgb(119, 129, 192)); }
+  .bottomRight2 { @include circle-position(76.4%, auto, 20.6%, rgb(60, 82, 224)); }
+  .bottomRight3 { @include circle-position(68%, auto, 26.6%, rgb(49, 51, 66)); }
+  .bottomRight4 { @include circle-position(62%, auto, 34.5%, rgb(113, 191, 12)); }
+  .bottomRight5 { @include circle-position(66%, auto, 36.6%, rgb(83, 199, 70)); }
+  .bottomRight6 { @include circle-position(60%, auto, 30.5%, rgb(124, 0, 62)); }
+
+  // Нижние элементы
+  .bottom1 { @include circle-position(93.4%, auto, 47.7%, rgb(125, 192, 0)); }
+  .bottom2 { @include circle-position(86%, auto, 48%, rgb(228, 223, 223)); }
+  .bottom3 { @include circle-position(77%, auto, 47.7%, rgb(214, 155, 45)); }
+
+  // Нижний левый угол
+  .bottomLeft1 { @include circle-position(80%, 15.7%, auto, rgb(244, 153, 73)); }
+  .bottomLeft2 { @include circle-position(75%, 20%, auto, rgb(74, 190, 144)); }
+  .bottomLeft3 { @include circle-position(69%, 26%, auto, rgb(165, 27, 60)); }
+
+  // Левая сторона
+  .left1 { @include circle-position(47%, 2%, auto, rgb(181, 29, 151)); }
+  .left2 { @include circle-position(48%, 10%, auto, rgb(1, 24, 173)); }
+  .left3 { @include circle-position(48%, 18.5%, auto, rgb(1, 20, 141)); }
+  .left4 { @include circle-position(48%, 33%, auto, rgb(55, 201, 62)); }
+
+  // Верхний левый угол
+  .topLeft1 { @include circle-position(14.8%, 15.5%, auto, rgb(126, 190, 17)); }
+  .topLeft2 { @include circle-position(21%, 21.5%, auto, rgb(149, 0, 0)); }
+  .topLeft3 { @include circle-position(26.8%, 27%, auto, rgb(10, 20, 85)); }
+
+
+  // 21-27 года
+  .year21 { @include number-position(5%,auto, 41.5%);}
+  .year22 { @include number-position(6%,auto, 38.5%);}
+  .year23 { @include number-position(7%,auto, 35.5%);}
+  .year24 { @include number-position(8.5%,auto, 32.5%);}
+  .year25 { @include number-position(9.5%,auto, 29.5%);}
+  .year26 { @include number-position(11%,auto, 26.5%);}
+  .year27 { @include number-position(12%,auto, 23.5%);}
+
+  // 31-38 года
+  .year31 { @include number-position(23%,auto, 13.5%);}
+  .year32 { @include number-position(26%,auto, 12%);}
+  .year33 { @include number-position(29%,auto, 10.5%);}
+  .year34 { @include number-position(32%,auto, 9%);}
+  .year35 { @include number-position(35%,auto, 8%);}
+  .year36 { @include number-position(38%,auto, 7%);}
+  .year37 { @include number-position(41%,auto, 5.5%);}
+
+  // 41-48 года
+  .year41 { @include number-position(55.5%,auto,6%);}
+  .year42 { @include number-position(59%,auto, 7%);}
+  .year43 { @include number-position(62%,auto, 8%);}
+  .year44 { @include number-position(65%,auto, 9.5%);}
+  .year45 { @include number-position(68%,auto, 11%);}
+  .year46 { @include number-position(71%,auto, 12%);}
+  .year47 { @include number-position(74%,auto, 13%);}
+
+    // 51-58 года
+  .year51 { @include number-position(84.5%,auto,24%);}
+  .year52 { @include number-position(86%,auto, 27%);}
+  .year53 { @include number-position(87.5%,auto, 30%);}
+  .year54 { @include number-position(89%,auto, 33%);}
+  .year55 { @include number-position(90%,auto, 36%);}
+  .year56 { @include number-position(91.5%,auto, 39%);}
+  .year57 { @include number-position(93%,auto, 42%);}
+// 61-68 Года
+.year61 { @include number-position(92%,41.5%, auto);}
+.year62 { @include number-position(90.5%,38.5%, auto);}
+.year63 { @include number-position(90%, 35.5%, auto);}
+.year64 { @include number-position(89%, 32.5%, auto);}
+.year65 { @include number-position(87.3%, 29.5%, auto);}
+.year66 { @include number-position(86%,26.5%, auto);}
+.year67 { @include number-position(84.5%,23.5%,auto);}
+// 71-78 года
+.year71 { @include number-position(73.5%,13.5%, auto);}
+.year72 { @include number-position(70.5%,12%, auto);}
+.year73 { @include number-position(67.5%, 10.5%, auto);}
+.year74 { @include number-position(64.5%, 9%, auto);}
+.year75 { @include number-position(61.5%, 8%, auto);}
+.year76 { @include number-position(58.5%,7%, auto);}
+.year77 { @include number-position(55.5%,5.5%,auto);}
+// 1 до 8 лет
+.year1 { @include number-position(41%,6%, auto);}
+.year2 { @include number-position(38%,7%, auto);}
+.year3 { @include number-position(35%, 8%, auto);}
+.year4 { @include number-position(32%, 9%, auto);}
+.year5 { @include number-position(29%, 10.5%, auto);}
+.year6 { @include number-position(26%,12%, auto);}
+.year7 { @include number-position(22.5%,13.5%,auto);}
+// 11 до 18 лет
+.year11 { @include number-position(12%,24.5%, auto);}
+.year12 { @include number-position(11%,27%, auto);}
+.year13 { @include number-position(10%, 30%, auto);}
+.year14 { @include number-position(8%, 33%, auto);}
+.year15 { @include number-position(7%, 36%, auto);}
+.year16 { @include number-position(6%,39%, auto);}
+.year17 { @include number-position(5%,42%,auto);}
+
+  // Контейнер для выбора даты
+  .birthdate-picker {
+    text-align: center;
+
+    .select-container {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+
+      
+      
+    }
+
+    .custom-select {
+      min-width: 100px;
+      border-radius: 20px;
+    }
+
+    .calculate-button {
+      margin-top: 15px;
+      border-radius: 20px;
+    }
+  }
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #007bff;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #0056b3;
+  } 
