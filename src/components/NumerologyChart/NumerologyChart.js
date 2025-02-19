@@ -58,6 +58,7 @@ const NumerologyChart = ({ onDataFetched }) => {
         { day, month: month.value, year }
       );
       onDataFetched(response.data); // Передаем данные в родительский компонент
+      setNumbers(response.data)
     } catch (err) {
       setError(err.message);
     }
