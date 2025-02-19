@@ -116,37 +116,39 @@ const NumerologyChart = () => {
 
         <div className="topRight1 circle large outlined">{numbers[4]}</div>
         <div className="topRight2 circle medium outlined">{numbers[5]}</div>
-        <div className="topRight3 circle medium outlined">{numbers[6]}</div>
+        <div className="topRight3 circle small outlined">{numbers[6]}</div>
 
         <div className="right1 circle large outlined">{numbers[7]}</div>
         <div className="right2 circle medium outlined">{numbers[8]}</div>
-        <div className="right3 circle medium outlined">{numbers[9]}</div>
-        <div className="right4 circle medium outlined">{numbers[10]}</div>
+        <div className="right3 circle small outlined">{numbers[9]}</div>
+        <div className="right4 circle mediumPlus outlined">{numbers[10]}</div>
         <div className="right5 circle medium outlined">{numbers[11]}</div>
+
+        <div className="center circle large outlined"> 1 </div>
 
         <div className="bottomRight1 circle large outlined">{numbers[12]}</div>
         <div className="bottomRight2 circle medium outlined">{numbers[13]}</div>
-        <div className="bottomRight3 circle medium outlined">{numbers[14]}</div>
-        <div className="bottomRight4 circle medium">{numbers[15]}</div>
-        <div className="bottomRight5 circle medium">{numbers[16]}</div>
-        <div className="bottomRight6 circle medium">{numbers[17]}</div>
+        <div className="bottomRight3 circle small outlined">{numbers[14]}</div>
+        <div className="bottomRight4 circle small outlined">{numbers[15]}</div>
+        <div className="bottomRight5 circle small outlined">{numbers[16]}</div>
+        <div className="bottomRight6 circle small outlined">{numbers[17]}</div>
 
-        <div className="bottom1 circle large">{numbers[18]}</div>
-        <div className="bottom2 circle medium">{numbers[19]}</div>
-        <div className="bottom3 circle medium">{numbers[20]}</div>
+        <div className="bottom1 circle large outlined">{numbers[18]}</div>
+        <div className="bottom2 circle medium outlined">{numbers[19]}</div>
+        <div className="bottom3 circle small outlined">{numbers[20]}</div>
 
-        <div className="bottomLeft1 circle large">{numbers[21]}</div>
-        <div className="bottomLeft2 circle medium">{numbers[22]}</div>
-        <div className="bottomLeft3 circle medium">{numbers[23]}</div>
+        <div className="bottomLeft1 circle large outlined">{numbers[21]}</div>
+        <div className="bottomLeft2 circle medium outlined">{numbers[22]}</div>
+        <div className="bottomLeft3 circle small outlined">{numbers[23]}</div>
 
-        <div className="left1 circle large">{numbers[0]}</div>
-        <div className="left2 circle medium">{numbers[1]}</div>
-        <div className="left3 circle medium">{numbers[2]}</div>
-        <div className="left4 circle medium">{numbers[3]}</div>
+        <div className="left1 circle large outlined">{numbers[0]}</div>
+        <div className="left2 circle medium outlined">{numbers[1]}</div>
+        <div className="left3 circle small outlined">{numbers[2]}</div>
+        <div className="left4 circle small outlined">{numbers[3]}</div>
 
-        <div className="topLeft1 circle large">{numbers[4]}</div>
-        <div className="topLeft2 circle medium">{numbers[5]}</div>
-        <div className="topLeft3 circle medium">{numbers[6]}</div>
+        <div className="topLeft1 circle large outlined">{numbers[4]}</div>
+        <div className="topLeft2 circle medium outlined">{numbers[5]}</div>
+        <div className="topLeft3 circle small outlined">{numbers[6]}</div>
 
 
         <div className="year21 number">1</div>

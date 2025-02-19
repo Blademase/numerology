@@ -119,18 +119,23 @@
       width: 30px;
     }
 
+    &.mediumPlus{
+      height: 34px;
+      width: 34px;
+    }
+
     &.large {
       height: 40px;
       width: 40px;
     }
 
     &.outlined {
-      box-shadow: 0 0 0 2px white, 0 0 0 3px black;
+      box-shadow:  0 0 0 2px black;
     }
   }
 
   // Позиционирование элементов
-  @mixin circle-position($top, $left: auto, $right: auto, $bg-color) {
+  @mixin circle-position($top, $left: auto, $right: auto, $bg-color: white) {
     top: $top;
     left: $left;
     right: $right;
@@ -143,52 +148,54 @@
   }
 
   // Верхние элементы
-  .top1 { @include circle-position(1%, 47.5%, auto, rgb(179, 152, 152)); }
-  .top2 { @include circle-position(8%, 48%, auto, rgb(198, 153, 153)); }
-  .top3 { @include circle-position(20%, 48.2%, auto, rgb(121, 2, 2)); }
-  .top4 { @include circle-position(30%, 48.2%, auto, rgb(0, 25, 189)); }
+  .top1 { @include circle-position(1%, 46.5%, auto,#ae309a); }
+  .top2 { @include circle-position(12%, 47.5%, auto, #0067d2); }
+  .top3 { @include circle-position(20%, 48.2%, auto, #00b8f4); }
+  .top4 { @include circle-position(32%, 48.2%, auto,  #63b062); }
 
   // Верхний правый угол
-  .topRight1 { @include circle-position(14%, auto, 15.3%, rgb(72, 198, 133)); }
-  .topRight2 { @include circle-position(19%, auto, 19.6%, rgb(165, 170, 204)); }
-  .topRight3 { @include circle-position(24%, auto, 23.6%, rgb(165, 170, 204)); }
+  .topRight1 { @include circle-position(14%, auto, 15.3%); }
+  .topRight2 { @include circle-position(22%, auto, 22.6%); }
+  .topRight3 { @include circle-position(28%, auto, 27.6%); }
 
   // Правая сторона
-  .right1 { @include circle-position(47.4%, auto, 1.6%, rgb(165, 170, 204)); }
-  .right2 { @include circle-position(48.4%, auto, 10.6%, rgb(165, 170, 204)); }
-  .right3 { @include circle-position(48.4%, auto, 20.6%, rgb(165, 170, 204)); }
-  .right4 { @include circle-position(48.4%, auto, 34.6%, rgb(165, 170, 204)); }
-  .right5 { @include circle-position(48.4%, auto, 40.6%, rgb(165, 170, 204)); }
+  .right1 { @include circle-position(47.4%, auto, 1.6%, #eb4b41) }
+  .right2 { @include circle-position(48.4%, auto, 10.6%); }
+  .right3 { @include circle-position(48.4%, auto, 20.6%,#e98c46); }
+  .right4 { @include circle-position(47%, auto, 30.6%); }
+  .right5 { @include circle-position(47.4%, auto, 38.6%); }
 
   // Нижний правый угол
-  .bottomRight1 { @include circle-position(80%, auto, 15%, rgb(119, 129, 192)); }
-  .bottomRight2 { @include circle-position(76.4%, auto, 20.6%, rgb(60, 82, 224)); }
-  .bottomRight3 { @include circle-position(68%, auto, 26.6%, rgb(49, 51, 66)); }
-  .bottomRight4 { @include circle-position(62%, auto, 34.5%, rgb(113, 191, 12)); }
-  .bottomRight5 { @include circle-position(66%, auto, 36.6%, rgb(83, 199, 70)); }
-  .bottomRight6 { @include circle-position(60%, auto, 30.5%, rgb(124, 0, 62)); }
+  .bottomRight1 { @include circle-position(80%, auto, 15%); }
+  .bottomRight2 { @include circle-position(73.4%, auto, 21.6%); }
+  .bottomRight3 { @include circle-position(67%, auto, 28.6%); }
+  .bottomRight4 { @include circle-position(61%, auto, 34.5%); }
+  .bottomRight5 { @include circle-position(67%, auto, 36.6%); }
+  .bottomRight6 { @include circle-position(60%, auto, 28.5%); }
 
   // Нижние элементы
-  .bottom1 { @include circle-position(93.4%, auto, 47.7%, rgb(125, 192, 0)); }
-  .bottom2 { @include circle-position(86%, auto, 48%, rgb(228, 223, 223)); }
-  .bottom3 { @include circle-position(77%, auto, 47.7%, rgb(214, 155, 45)); }
+  .bottom1 { @include circle-position(90.4%, auto, 45.7%, #eb4b41); }
+  .bottom2 { @include circle-position(83%, auto, 47%); }
+  .bottom3 { @include circle-position(75%, auto, 48%,#e98c46); }
 
   // Нижний левый угол
-  .bottomLeft1 { @include circle-position(80%, 15.7%, auto, rgb(244, 153, 73)); }
-  .bottomLeft2 { @include circle-position(75%, 20%, auto, rgb(74, 190, 144)); }
-  .bottomLeft3 { @include circle-position(69%, 26%, auto, rgb(165, 27, 60)); }
+  .bottomLeft1 { @include circle-position(78%, 14.7%, auto); }
+  .bottomLeft2 { @include circle-position(72%, 22%, auto); }
+  .bottomLeft3 { @include circle-position(67.5%, 28%, auto); }
 
   // Левая сторона
-  .left1 { @include circle-position(47%, 2%, auto, rgb(181, 29, 151)); }
-  .left2 { @include circle-position(48%, 10%, auto, rgb(1, 24, 173)); }
-  .left3 { @include circle-position(48%, 18.5%, auto, rgb(1, 20, 141)); }
-  .left4 { @include circle-position(48%, 33%, auto, rgb(55, 201, 62)); }
+  .left1 { @include circle-position(47%, 2%, auto,#ae309a); }
+  .left2 { @include circle-position(47.5%, 13%, auto,#0067d2); }
+  .left3 { @include circle-position(48%, 20.5%, auto,#00b8f4); }
+  .left4 { @include circle-position(48%, 33%, auto, #63b062); }
 
   // Верхний левый угол
-  .topLeft1 { @include circle-position(14.8%, 15.5%, auto, rgb(126, 190, 17)); }
-  .topLeft2 { @include circle-position(21%, 21.5%, auto, rgb(149, 0, 0)); }
-  .topLeft3 { @include circle-position(26.8%, 27%, auto, rgb(10, 20, 85)); }
+  .topLeft1 { @include circle-position(14.8%, 15.5%, auto); }
+  .topLeft2 { @include circle-position(22%, 22%, auto); }
+  .topLeft3 { @include circle-position(28%, 28%, auto); }
 
+  // центр
+  .center{ @include circle-position(46.5%, 46.5%, auto,#ffde68);}
 
   // 21-27 года
   .year21 { @include number-position(5%,auto, 41.5%);}

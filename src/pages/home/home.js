@@ -8,6 +8,7 @@ function Home() {
   return (
     <div className="HomeRlc">
       <Header/>
+      <img style={{ height: 300 }}  src="https://static.wixstatic.com/media/20a8bc_a26ccd0842e9412babddf5f09a7b508f~mv2.webp/v1/crop/x_406,y_265,w_980,h_495,q_85,enc_avif,quality_auto/20a8bc_a26ccd0842e9412babddf5f09a7b508f~mv2.webp"/>
     <div className="Home">
       <NumerologyChart />
       <InfoTable/>
