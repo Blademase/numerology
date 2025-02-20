@@ -25,7 +25,7 @@
     border-radius: $border-radius;
     box-shadow: $shadow;
     width: 530px;
-
+    height: 540px;
     img {
       width: 100%;
     }
@@ -58,7 +58,12 @@
     box-shadow: $shadow;
     padding-top:50px ;
     padding-bottom: 70px;
-    span{
+    height: 250px;
+    .age{
+      position: absolute;
+      bottom: 15px;
+    }
+    .bd-text{
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -88,8 +93,9 @@
         outline: none;
       }
     }
+ 
   }
-
+ 
   .calculate-button {
     position: absolute;
     width: 130px;
@@ -101,10 +107,11 @@
     border-radius: 25px;
     cursor: pointer;
     transition: 0.3s;
-  bottom: 10px;
+    bottom: 65px;
     &:hover {
       background: $primary-hover;
     }
+    
   }
 
   // Размеры кругов

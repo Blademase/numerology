@@ -57,7 +57,7 @@ const NumerologyChart = ({ onDataFetched }) => {
         "https://sharshenaliev.pythonanywhere.com/matrix/calculate/",
         { day, month: month.value, year }
       );
-      onDataFetched(response.data); // Передаем данные в родительский компонент
+      onDataFetched(response.data);
       setNumbers(response.data)
     } catch (err) {
       setError(err.message);
@@ -67,7 +67,7 @@ const NumerologyChart = ({ onDataFetched }) => {
   return (
     <div className="numerlogyChart">
 <div className="birthdate-container">
-        <span>Введите дату рождения</span>
+        <span className="bd-text">Введите дату рождения</span>
         <div className="select-container">
           <label className="select-label">Число</label>
           <select className="custom-select" value={day} onChange={(e) => setDay(Number(e.target.value))}>
@@ -96,6 +96,7 @@ const NumerologyChart = ({ onDataFetched }) => {
         </div>
 
         <button className="calculate-button" onClick={handleCalculate}>Рассчитать</button>
+        <span className="age">{year}</span>
       </div>
 
       {error && <p className="text-red-500">Ошибка: {error}</p>}

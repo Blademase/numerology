@@ -10,7 +10,7 @@
   background: white;
   padding: 20px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-
+  border-radius: 18px;
   .chakra-title {
     font-size: 18px;
     font-weight: bold;
@@ -31,7 +31,7 @@
   }
 
   th, td {
-    padding: 10px;
+    padding: 6px;
     background: white;
     border: none;
     white-space: nowrap; // 🔹 Запрещает перенос строк
@@ -60,7 +60,7 @@
     width: 100%;
     max-width: 600px;
     background: white;
-    border-radius: 10px;
+    border-radius: 18px !important;
     padding: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     display: grid;
@@ -79,9 +79,8 @@
     .personalInfoContent {
         display: flex;
         flex-direction: column;
-        height: 100%; // Даем контейнеру одинаковую высоту
         justify-content: space-between; // Раздвигаем контент равномерно
-
+        border: 1px solid white;;
         .personalInfoLeftTop {
             flex-grow: 1; // Верхняя часть растягивается равномерно
             display: flex;
@@ -136,7 +135,7 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-end; // Чтобы нижний блок выровнялся
-            min-height: 110px; // Чтобы не схлопывался при маленьком контенте
+            min-height: 67px; // Чтобы не схлопывался при маленьком контенте
 
             .spirit {
                 display: flex;
