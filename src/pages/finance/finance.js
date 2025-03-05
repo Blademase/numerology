@@ -1,84 +1,144 @@
 import React, { useState } from "react";
+import axios from "axios";
 import NumerologyChart from "../../components/NumerologyChart/NumerologyChart";
 import InfoTable from "../../components/InfoTable/InfoTable";
-import Header from "../../components/Header/Header"
 import Accordions from "../../components/Accordions/Accordions";
-import "./finance.scss"
+import TrainingCard  from "../../components/TrainingCard/TrainingCard"
+import { 
+  newChakraData, 
+  accordionConfig, 
+  newPersonalInfo, 
+  months, 
+  years 
+} from "./constants";
+import { 
+  calculateNumerology, 
+  getQualitiesData, 
+  getSoulWorkData, 
+  getKarmaData,  
+  getPastLife
+} from "../../services/fateService.js";
+import "./finance.scss";
+import DateDecodingCard from "../../components/DateDecodingCard/DateDecodingCard.js"
 function Finance() {
-  const [numerologyData, setNumerologyData] = useState(null);
-  const newChakraData = [
-    { name: "7. Сахасрара", color: "#8B5CF6" },
-    { name: "6. Аджна", color: "#6366F1" },
-    { name: "5. Вишудха", color: "#06B6D4" },
-    { name: "4. Анахата", color: "#22C55E" },
-    { name: "3. Манипура", color: "#EAB308" },
-    { name: "2. Свадхистана", color: "#F97316" },
-    { name: "1. Муладхара", color: "#EF4444" }
-  ];
-  
-  const newNumbers = {
-    o7: 10, p7: 5, q7: 12,
-    o6: 8, p6: 7, q6: 10,
-    o5: 14, p5: 9, q5: 6,
-    o4: 11, p4: 13, q4: 15,
-    o3: 6, p3: 8, q3: 7,
-    o2: 10, p2: 12, q2: 14,
-    o1: 9, p1: 11, q1: 13,
-    o: 70, p: 65, q: 80,
-    r: 5, s: 10, y: 15,
-    t: 7, u: 12, v: 18,
-    w: 22, x: 25
+  const [numerologyData, setNumerologyData] = useState({});
+  const [combinedData, setCombinedData] = useState({});
+  const [year, setYear] = useState(2025);
+  const [month, setMonth] = useState(months[0]);
+  const [day, setDay] = useState(1);
+  const [error, setError] = useState(null);
+
+  const updateCombinedData = (newData) => {
+    setCombinedData((prevData) => ({
+      ...prevData,
+      ...newData
+    }));
   };
-  
-  const newPersonalInfo = [
-    {
-      title: "Поиск себя:",
-      description: "Соединение мужского и женского. Выстраивание взаимоотношений. Способности, навыки, умения.",
-      skyLabel: "Небо",
-      skyKey: "r",
-      earthLabel: "Земля",
-      earthKey: "s",
-      resultKey: "y",
-      spiritLabel: "Духовная гармония",
-      spiritKey: "w",
-      question: "Духовный зачет. Кто я для бога? Где божественное во мне?"
-    },
-    {
-      title: "Социализация:",
-      description: "Социальная и родовая системы. Результаты и признание в социуме.",
-      skyLabel: "M",
-      skyKey: "t",
-      earthLabel: "Ж",
-      earthKey: "u",
-      resultKey: "v",
-      spiritLabel: "Планетарное",
-      spiritKey: "x",
-      question: "Планетарное предназначение человека"
+
+  const getDaysInMonth = (month, year) => {
+    if (month.name === "Февраль") {
+      return year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0) ? 29 : 28;
     }
-  ];  
+    return month.days;
+  };
+
+  const handleMonthChange = (e) => {
+    const selectedMonth = months.find(m => m.name === e.target.value);
+    setMonth(selectedMonth);
+
+    if (day > getDaysInMonth(selectedMonth, year)) {
+      setDay(1);
+    }
+  };
+
+  const handleYearChange = (e) => {
+    const selectedYear = Number(e.target.value);
+    setYear(selectedYear);
+
+    if (month.name === "Февраль" && day > getDaysInMonth(month, selectedYear)) {
+      setDay(1);
+    }
+  };
+
+  const handleCalculate = async () => {
+    setCombinedData({});
+    setNumerologyData({});
+    try {
+      const numerologyResponse = await calculateNumerology({ day, month: month.value, year });
+      setNumerologyData(numerologyResponse);
+
+      const qualitiesResponse = await getQualitiesData(numerologyResponse);
+      updateCombinedData({ qualities: qualitiesResponse });
+
+      const soulWorkResponse = await getSoulWorkData(numerologyResponse);
+      updateCombinedData({ soulWork: soulWorkResponse });
+
+      const karmaResponse = await getKarmaData(numerologyResponse);
+      updateCombinedData({ karma: karmaResponse });
+
+      const PastLifeRespone = await getPastLife(numerologyResponse);
+      console.log(getPastLife(numerologyResponse))
+      updateCombinedData({pastLife:PastLifeRespone})
+    } catch (error) {
+      console.error("Ошибка при выполнении расчёта:", error.message);
+    }
+  };
+
   return (
     <div className="FateRlc">
-    <div className="fuck">
-   <div  className="Fate">
-      <div>
-    <NumerologyChart onDataFetched={setNumerologyData} />
-    </div>
-    <div>
-    <InfoTable 
-        chakraData={newChakraData} 
-        numbers1={newNumbers} 
-        personalInfo={newPersonalInfo} 
-        numbers={numerologyData}
-       showChakraTable= {false} 
-      />
-    </div>
-    <div>
-      
-    </div>
-    </div>
+      <div className="Fate">
+        <div className="FateFirstColumn">
+          <div className="birthdate-container">
+            <span className="bd-text">Введите дату рождения</span>
+
+            <div className="select-container">
+              <label className="select-label">Число</label>
+              <select className="custom-select" value={day} onChange={(e) => setDay(Number(e.target.value))}>
+                {Array.from({ length: getDaysInMonth(month, year) }, (_, i) => i + 1).map((d) => (
+                  <option key={d} value={d}>{d}</option>
+                ))}
+              </select>
+            </div>
+
+            <div className="select-container">
+              <label className="select-label">Месяц</label>
+              <select className="custom-select" value={month.name} onChange={handleMonthChange}>
+                {months.map((m) => (
+                  <option key={m.name} value={m.name}>{m.name}</option>
+                ))}
+              </select>
+            </div>
+
+            <div className="select-container">
+              <label className="select-label">Год</label>
+              <select className="custom-select" value={year} onChange={handleYearChange}>
+                {years.map((y) => (
+                  <option key={y} value={y}>{y}</option>
+                ))}
+              </select>
+            </div>
+
+            <button onClick={handleCalculate}>Рассчитать</button>
+          </div>
+
+          <NumerologyChart numbers={numerologyData} onCalculate={handleCalculate} />
+        </div>
+
+        <InfoTable chakraData={newChakraData} numbers={numerologyData} personalInfo={newPersonalInfo} showChakraTable={false} />
     
-    <Accordions/>
-    </div>
+      </div>
+      <div className="accordions">
+      <Accordions 
+    data={combinedData} 
+    config={accordionConfig} 
+/></div>
+      <div className="dateDecodingCard">
+      {Array.from({ length: 3 }, (_, index) => (
+  <DateDecodingCard key={index} />
+))}
+</div>
+
+     
     </div>
   );
 }

@@ -3,6 +3,7 @@ import "./InfoTable.scss";
 import bracket from "../../assets/bezimeni-6-kopiya-8982948.webp";
 
 const InfoTable = ({ chakraData, numbers, personalInfo, showChakraTable = true  }) => {
+  
   return (
     <div className="infoTable">
       {/* Таблица чакр */}
@@ -39,7 +40,7 @@ const InfoTable = ({ chakraData, numbers, personalInfo, showChakraTable = true  
           <tfoot>
             <tr className="totalRow">
               <td>ИТОГО</td>
-              <td>{numbers?.o ?? 0}</td>
+              <td>{numbers.o ?? 0}</td>
               <td>{numbers?.p ?? 0}</td>
               <td>{numbers?.q ?? 0}</td>
             </tr>

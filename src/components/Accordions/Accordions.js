@@ -8,54 +8,73 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import LockIcon from '@mui/icons-material/Lock';
 import './Accordions.scss';
 
-const accordionData = [
-  { title: 'Личные качества', locked: false },
-  { title: 'Кем работать для Души', locked: true },
-  { title: 'Карма и задача 40 лет', locked: true },
-  { title: 'Точка душевного комфорта', locked: false },
-  { title: 'Самореализация', locked: false },
-  { title: 'Задачи, которые тянутся из прошлых жизней', locked: true },
-  { title: 'Точка личной силы', locked: true },
-  { title: 'Сила рода', locked: true },
-];
-
-const Accordions = () => {
+// Универсальный компонент для рендеринга аккордеонов
+const Accordions = ({ data, config = [] }) => {
   const [expanded, setExpanded] = useState(null);
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : null);
-    console.log(`Аккордеон ${panel} открыт:`, isExpanded);
+  };
+
+  // Универсальный рендеринг талантов
+  const renderTalent = (talent, label) => {
+    if (!talent) return null;
+    return (
+      <div className="talent-block">
+        <Typography variant="h6">{label}</Typography>
+        <Typography variant="subtitle1">{talent.title}</Typography>
+        <Typography variant="body2">{talent.description}</Typography>
+      </div>
+    );
   };
 
   return (
     <div className="accordion-container">
-      {accordionData.map((item, index) => (
-        <Accordion 
-          key={index} 
-          expanded={expanded === index} 
-          onChange={handleChange(index)}
-          className={item.locked ? 'locked' : ''}
-        >
-          <AccordionSummary expandIcon={item.locked ? <LockIcon /> : <ExpandMoreIcon />}>
-            <Typography component="span" className="accordion-title">
-              {item.title}
-            </Typography>
-            {item.locked && (
-              <a 
-                href="#" 
-                className={`unlock-link ${expanded === index ? 'active' : ''}`}
-              >
-                Разблокировать
-              </a>
+      {config.map((item, index) => {
+        const content = data[item.key] || {};
+        const isLocked = item.locked || content?.is_paid;
+
+        return (
+          <Accordion 
+            key={index} 
+            expanded={expanded === index} 
+            onChange={handleChange(index)}
+            className={isLocked ? 'locked' : ''}
+          >
+            <AccordionSummary expandIcon={isLocked ? <LockIcon /> : <ExpandMoreIcon />}>
+              <Typography component="span" className="accordion-title">
+                {item.title}
+              </Typography>
+              {isLocked && (
+                <a 
+                  href="#" 
+                  className={`unlock-link ${expanded === index ? 'active' : ''}`}
+                >
+                  Разблокировать
+                </a>
+              )}
+            </AccordionSummary>
+
+            {!isLocked && (
+              <AccordionDetails>
+                <Typography variant="h6">{content?.title ?? "Без названия"}</Typography>
+                <Typography 
+                  variant="body1" 
+                  dangerouslySetInnerHTML={{ __html: content?.description ?? "Нет описания" }} 
+                />
+
+                {renderTalent(content?.birth_talent, "Талант при рождении")}
+                {renderTalent(content?.mature_talent, "Талант зрелости")}
+                {renderTalent(content?.youth_talent, "Талант молодости")}
+                {renderTalent(content?.innate_talent, "Врожденный талант")}
+                {renderTalent(content?.order1, "Первый порядок")}
+                {renderTalent(content?.order2, "Второй порядок")}
+                {renderTalent(content?.order3, "Третий порядок")}
+              </AccordionDetails>
             )}
-          </AccordionSummary>
-          {!item.locked && (
-            <AccordionDetails>
-              <Typography>Содержимое раздела</Typography>
-            </AccordionDetails>
-          )}
-        </Accordion>
-      ))}
+          </Accordion>
+        );
+      })}
     </div>
   );
 };

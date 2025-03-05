@@ -3,103 +3,11 @@ import axios from "axios";
 import cals from "../../assets/shema.png";
 import "./NumerologyChart.scss";
 
-const months = [
-  { name: "Январь", value: 1, days: 31 },
-  { name: "Февраль", value: 2, days: 28 },
-  { name: "Март", value: 3, days: 31 },
-  { name: "Апрель", value: 4, days: 30 },
-  { name: "Май", value: 5, days: 31 },
-  { name: "Июнь", value: 6, days: 30 },
-  { name: "Июль", value: 7, days: 31 },
-  { name: "Август", value: 8, days: 31 },
-  { name: "Сентябрь", value: 9, days: 30 },
-  { name: "Октябрь", value: 10, days: 31 },
-  { name: "Ноябрь", value: 11, days: 30 },
-  { name: "Декабрь", value: 12, days: 31 }
-];
 
-const years = Array.from({ length: 100 }, (_, i) => 2025 - i);
 
-const NumerologyChart = ({ onDataFetched }) => {
-  const [year, setYear] = useState(2025);
-  const [month, setMonth] = useState(months[0]);
-  const [day, setDay] = useState(1);
-  const [numbers, setNumbers] = useState(Array(24).fill(0));
-  const [error, setError] = useState(null);
-
-  const getDaysInMonth = (month, year) => {
-    if (month.name === "Февраль") {
-      return year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0) ? 29 : 28;
-    }
-    return month.days;
-  };
-
-  const handleMonthChange = (e) => {
-    const selectedMonth = months.find(m => m.name === e.target.value);
-    setMonth(selectedMonth);
-
-    if (day > getDaysInMonth(selectedMonth, year)) {
-      setDay(1);
-    }
-  };
-
-  const handleYearChange = (e) => {
-    const selectedYear = Number(e.target.value);
-    setYear(selectedYear);
-
-    if (month.name === "Февраль" && day > getDaysInMonth(month, selectedYear)) {
-      setDay(1);
-    }
-  };
-  const handleCalculate = async () => {
-    try {
-      const response = await axios.post(
-        "https://sharshenaliev.pythonanywhere.com/matrix/calculate/",
-        { day, month: month.value, year }
-      );
-      onDataFetched(response.data);
-      setNumbers(response.data)
-    } catch (err) {
-      setError(err.message);
-    }
-  };
-
+const NumerologyChart = ({ numbers = {},  }) => {
   return (
     <div className="numerlogyChart">
-<div className="birthdate-container">
-        <span className="bd-text">Введите дату рождения</span>
-        <div className="select-container">
-          <label className="select-label">Число</label>
-          <select className="custom-select" value={day} onChange={(e) => setDay(Number(e.target.value))}>
-            {Array.from({ length: getDaysInMonth(month, year) }, (_, i) => i + 1).map((d) => (
-              <option key={d} value={d}>{d}</option>
-            ))}
-          </select>
-        </div>
-
-        <div className="select-container">
-          <label className="select-label">Месяц</label>
-          <select className="custom-select" value={month.name} onChange={handleMonthChange}>
-            {months.map((m) => (
-              <option key={m.name} value={m.name}>{m.name}</option>
-            ))}
-          </select>
-        </div>
-
-        <div className="select-container">
-          <label className="select-label">Год</label>
-          <select className="custom-select" value={year} onChange={handleYearChange}>
-            {years.map((y) => (
-              <option key={y} value={y}>{y}</option>
-            ))}
-          </select>
-        </div>
-
-        <button className="calculate-button" onClick={handleCalculate}>Рассчитать</button>
-        <span className="age">{year}</span>
-      </div>
-
-      {error && <p className="text-red-500">Ошибка: {error}</p>}
       <div className="shema">
         <img src={cals}  alt="Numerology Chart" />
         <div className="top1 circle large outlined">{numbers?.b ?? 0}</div>

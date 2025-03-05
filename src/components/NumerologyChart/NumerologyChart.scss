@@ -47,55 +47,6 @@
     }
   }
 
-  .birthdate-container {
-    display: flex;
-    position: relative;
-    justify-content: center;
-    gap: 15px;
-    padding: 20px;
-    background: $bg-color;
-    border-radius: $border-radius;
-    box-shadow: $shadow;
-    padding-top:50px ;
-    padding-bottom: 70px;
-    height: 250px;
-    .age{
-      position: absolute;
-      bottom: 15px;
-    }
-    .bd-text{
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 10px;
-    }
-    .select-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-      .select-label {
-        font-size: 14px;
-        color: #666;
-        margin-bottom: 5px;
-        text-align: center;
-      }
-
-      .custom-select {
-        width: 100px;
-        padding: 10px;
-        border-radius: 25px;
-        border: 1px solid #ccc;
-        background: $bg-color;
-        text-align: center;
-        font-size: 16px;
-        appearance: none;
-        outline: none;
-      }
-    }
- 
-  }
- 
   .calculate-button {
     position: absolute;
     width: 130px;

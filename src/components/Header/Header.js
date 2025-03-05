@@ -29,7 +29,7 @@ const Header = () => {
           <Link to="/forecast-2025">ПРОГНОЗ 2025</Link>
         </div>
         <div className="menu-item">
-          <Link to="/additional-calculations">ДОП РАСЧЕТЫ</Link>
+          <Link to="/additional">ДОП РАСЧЕТЫ</Link>
         </div>
       </div>
       <button className="login-button">
