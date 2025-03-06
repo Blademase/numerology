@@ -3,7 +3,7 @@ import "./TarotReading.scss";
 import cardBackImage from "../../assets/oblozhka-7978539.webp"; // Путь к рубашке карт
 
 const TarotReading = () => {
-  const totalCards = 30; // Количество карт в колоде
+  const totalCards = 78; // Количество карт в колоде
   const [selectedCards, setSelectedCards] = useState([]);
   const [isDeckSpread, setIsDeckSpread] = useState(false); // Раскрыта ли колода
 
@@ -20,6 +20,7 @@ const TarotReading = () => {
   };
 
   return (
+    <div className="tarotRlc">
     <div className="tarot-container">
       <h2>
         Выберите <span className="highlight">три карты</span>
@@ -33,7 +34,7 @@ const TarotReading = () => {
 
       {!isDeckSpread ? (
         <div className="tarot-stack" onClick={handleDeckClick}>
-          {[...Array(5)].map((_, index) => (
+          {[...Array(10)].map((_, index) => (
             <img
               key={index}
               src={cardBackImage}
@@ -63,6 +64,7 @@ const TarotReading = () => {
           ))}
         </div>
       )}
+    </div>
     </div>
   );
 };

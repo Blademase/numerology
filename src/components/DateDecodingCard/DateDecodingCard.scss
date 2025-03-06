@@ -4,10 +4,13 @@
     align-items: center;
     background-color: transparent;
     width: fit-content;
+   
   }
   
   .card {
     width: 320px;
+    position: relative;
+    min-height: 400px;
     background: #ffffff;
     border-radius: 16px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -60,8 +63,11 @@
     }
   
     .buy-button {
-      margin-top: 16px;
-      width: 100%;
+        position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
       background: #005bbb;
       color: white;
       padding: 12px;

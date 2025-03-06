@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -8,15 +8,26 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import LockIcon from '@mui/icons-material/Lock';
 import './Accordions.scss';
 
-// Универсальный компонент для рендеринга аккордеонов
-const Accordions = ({ data, config = [] }) => {
+const Accordions = ({ data, defaultAccordionData }) => {
   const [expanded, setExpanded] = useState(null);
+  const [accordionData, setAccordionData] = useState(defaultAccordionData);
+
+  useEffect(() => {
+    if (Object.keys(data).length > 0) {
+      setAccordionData(
+        defaultAccordionData.map((item) => ({
+          ...item,
+          ...(data[item.key] || {}),
+          is_paid: data[item.key] ? data[item.key].is_paid : true
+        }))
+      );
+    }
+  }, [data]);
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : null);
   };
 
-  // Универсальный рендеринг талантов
   const renderTalent = (talent, label) => {
     if (!talent) return null;
     return (
@@ -28,53 +39,40 @@ const Accordions = ({ data, config = [] }) => {
     );
   };
 
+  const renderNestedTalents = (content) => {
+    return Object.keys(content)
+      .filter((key) => typeof content[key] === 'object' && content[key] !== null)
+      .map((key, index) => renderTalent(content[key], key.replace(/_/g, ' ')));
+  };
+
   return (
     <div className="accordion-container">
-      {config.map((item, index) => {
-        const content = data[item.key] || {};
-        const isLocked = item.locked || content?.is_paid;
-
-        return (
-          <Accordion 
-            key={index} 
-            expanded={expanded === index} 
-            onChange={handleChange(index)}
-            className={isLocked ? 'locked' : ''}
-          >
-            <AccordionSummary expandIcon={isLocked ? <LockIcon /> : <ExpandMoreIcon />}>
-              <Typography component="span" className="accordion-title">
-                {item.title}
-              </Typography>
-              {isLocked && (
-                <a 
-                  href="#" 
-                  className={`unlock-link ${expanded === index ? 'active' : ''}`}
-                >
-                  Разблокировать
-                </a>
-              )}
-            </AccordionSummary>
-
-            {!isLocked && (
-              <AccordionDetails>
-                <Typography variant="h6">{content?.title ?? "Без названия"}</Typography>
-                <Typography 
-                  variant="body1" 
-                  dangerouslySetInnerHTML={{ __html: content?.description ?? "Нет описания" }} 
-                />
-
-                {renderTalent(content?.birth_talent, "Талант при рождении")}
-                {renderTalent(content?.mature_talent, "Талант зрелости")}
-                {renderTalent(content?.youth_talent, "Талант молодости")}
-                {renderTalent(content?.innate_talent, "Врожденный талант")}
-                {renderTalent(content?.order1, "Первый порядок")}
-                {renderTalent(content?.order2, "Второй порядок")}
-                {renderTalent(content?.order3, "Третий порядок")}
-              </AccordionDetails>
+      {accordionData?.map((content, index) => (
+        <Accordion 
+          key={index} 
+          expanded={expanded === index} 
+          onChange={handleChange(index)}
+          className={content.is_paid ? 'locked' : ''}
+        >
+          <AccordionSummary expandIcon={content.is_paid ? <LockIcon /> : <ExpandMoreIcon />}>
+            <Typography component="span" className="accordion-title">
+              {content.title}
+            </Typography>
+            {content.is_paid && (
+              <a href="#" className={`unlock-link ${expanded === index ? 'active' : ''}`}>
+                Разблокировать
+              </a>
             )}
-          </Accordion>
-        );
-      })}
+          </AccordionSummary>
+
+          {!content.is_paid && (
+            <AccordionDetails>
+              <Typography variant="body1" dangerouslySetInnerHTML={{ __html: content?.description ?? 'Нет описания' }} />
+              {renderNestedTalents(content)}
+            </AccordionDetails>
+          )}
+        </Accordion>
+      ))}
     </div>
   );
 };

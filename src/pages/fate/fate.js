@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import NumerologyChart from "../../components/NumerologyChart/NumerologyChart";
 import InfoTable from "../../components/InfoTable/InfoTable";
@@ -9,14 +9,27 @@ import {
   accordionConfig, 
   newPersonalInfo, 
   months, 
-  years 
+  years,
+  defaultAccordionData
 } from "./constants";
 import { 
   calculateNumerology, 
   getQualitiesData, 
   getSoulWorkData, 
   getKarmaData,  
-  getPastLife
+  getPastLife,
+  getComfortPoint,
+  getSelfRealization,
+  getPointPersonalPower,
+  getGenericPower,
+  getParentChildKarma,
+  getSpiritualKarma,
+  getMatrixRelationship,
+  getMatrixMoney,
+  getSoulMission,
+  getDiseasePredisposition,
+  getHealthMap
+
 } from "../../services/fateService.js";
 import "./fate.scss";
 import DateDecodingCard from "../../components/DateDecodingCard/DateDecodingCard.js"
@@ -27,14 +40,27 @@ function Fate() {
   const [month, setMonth] = useState(months[0]);
   const [day, setDay] = useState(1);
   const [error, setError] = useState(null);
-
+  const [tariffs, setTariffs] = useState(null);
   const updateCombinedData = (newData) => {
     setCombinedData((prevData) => ({
       ...prevData,
       ...newData
     }));
   };
+  useEffect(() => {
+    const getTariffs = async () => {
+      try {
+        const response = await axios.get(`https://sharshenaliev.pythonanywhere.com/matrix_fate/tariffs/`);
+        setTariffs(response.data);
+        
+        
+      } catch (error) {
+        console.error("Ошибка при получении тарифов:", error);
+      }
+    };
 
+    getTariffs();
+  }, []); 
   const getDaysInMonth = (month, year) => {
     if (month.name === "Февраль") {
       return year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0) ? 29 : 28;
@@ -66,23 +92,47 @@ function Fate() {
     try {
       const numerologyResponse = await calculateNumerology({ day, month: month.value, year });
       setNumerologyData(numerologyResponse);
-
-      const qualitiesResponse = await getQualitiesData(numerologyResponse);
-      updateCombinedData({ qualities: qualitiesResponse });
-
-      const soulWorkResponse = await getSoulWorkData(numerologyResponse);
-      updateCombinedData({ soulWork: soulWorkResponse });
-
-      const karmaResponse = await getKarmaData(numerologyResponse);
-      updateCombinedData({ karma: karmaResponse });
-
-      const PastLifeRespone = await getPastLife(numerologyResponse);
-      console.log(getPastLife(numerologyResponse))
-      updateCombinedData({pastLife:PastLifeRespone})
+  
+      const requests = [
+        getQualitiesData(numerologyResponse),
+        getSoulWorkData(numerologyResponse),
+        getKarmaData(numerologyResponse),
+        getPastLife(numerologyResponse),
+        getComfortPoint(numerologyResponse),
+        getSelfRealization(numerologyResponse),
+        getPointPersonalPower(numerologyResponse),
+        getGenericPower(numerologyResponse),
+        getParentChildKarma(numerologyResponse),
+        getSpiritualKarma(numerologyResponse),
+        getMatrixRelationship(numerologyResponse),
+        getMatrixMoney(numerologyResponse),
+        getSoulMission(numerologyResponse),
+        getDiseasePredisposition(numerologyResponse),
+        getHealthMap(numerologyResponse)
+      ];
+  
+      const results = await Promise.allSettled(requests);
+  
+      results.forEach((result, index) => {
+        if (result.status === "fulfilled") {
+          const key = [
+            "qualities", "soulWork", "karma", "pastLife", "comfortPoint",
+            "selfRealization", "pointPersonalPower", "genericPower",
+            "parentChildKarma", "spiritualKarma", "matrixRelationship",
+            "matrixMoney", "soulMission", "diseasePredisposition", "healthMap"
+          ][index];
+  
+          updateCombinedData({ [key]: result.value });
+        } else {
+          console.error(`Ошибка в запросе ${index + 1}:`, result.reason);
+        }
+      });
+  
     } catch (error) {
       console.error("Ошибка при выполнении расчёта:", error.message);
     }
   };
+  
 
   return (
     <div className="FateRlc">
@@ -130,12 +180,14 @@ function Fate() {
       <div className="accordions">
       <Accordions 
     data={combinedData} 
-    config={accordionConfig} 
+    defaultAccordionData={defaultAccordionData}
 /></div>
+
       <div className="dateDecodingCard">
-      {Array.from({ length: 3 }, (_, index) => (
-  <DateDecodingCard key={index} />
-))}
+  {tariffs &&
+    tariffs?.map((tariff, index) => (
+      <DateDecodingCard key={index} data={tariff} />
+    ))}
 </div>
 <div className="trainingCards">
       {Array.from({ length: 3 }, (_, index) => (

@@ -1,19 +1,15 @@
 import React from "react";
 import "./DateDecodingCard.scss";
 
-const DateDecodingCard = () => {
+const DateDecodingCard = ({ data }) => {
+    console.log(data);
+
   return (
     <div className="container">
       <div className="card">
-        <div className="card-header">ДЛЯ СЕБЯ</div>
+        <div className="card-header">{data?.name}</div>
         <div className="card-body">
-          <h2>РАСШИФРОВКА ОДНОЙ ДАТЫ:</h2>
-          <p className="date">05.03.2025</p>
-          <ul className="features">
-            <li>- Полная расшифровка даты</li>
-            <li>- Доступ навсегда</li>
-          </ul>
-          <p className="price">690 ₽</p>
+          <div dangerouslySetInnerHTML={{ __html: data?.description }} />
           <button className="buy-button">КУПИТЬ</button>
         </div>
       </div>
