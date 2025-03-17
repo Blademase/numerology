@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import NumerologyChart from "../../components/NumerologyChart/NumerologyChart";
 import InfoTable from "../../components/InfoTable/InfoTable";
 import Accordions from "../../components/Accordions/Accordions";
 import TrainingCard  from "../../components/TrainingCard/TrainingCard"
 import { 
   newChakraData, 
-  accordionConfig, 
   newPersonalInfo, 
   months, 
   years,
@@ -30,7 +28,7 @@ import {
   getDiseasePredisposition,
   getHealthMap
 
-} from "../../services/fateService.js";
+} from "../../services/fateService/fateService.js";
 import "./fate.scss";
 import DateDecodingCard from "../../components/DateDecodingCard/DateDecodingCard.js"
 function Fate() {
@@ -40,27 +38,14 @@ function Fate() {
   const [month, setMonth] = useState(months[0]);
   const [day, setDay] = useState(1);
   const [error, setError] = useState(null);
-  const [tariffs, setTariffs] = useState(null);
+  
   const updateCombinedData = (newData) => {
     setCombinedData((prevData) => ({
       ...prevData,
       ...newData
     }));
   };
-  useEffect(() => {
-    const getTariffs = async () => {
-      try {
-        const response = await axios.get(`https://sharshenaliev.pythonanywhere.com/matrix_fate/tariffs/`);
-        setTariffs(response.data);
-        
-        
-      } catch (error) {
-        console.error("Ошибка при получении тарифов:", error);
-      }
-    };
-
-    getTariffs();
-  }, []); 
+ 
   const getDaysInMonth = (month, year) => {
     if (month.name === "Февраль") {
       return year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0) ? 29 : 28;
@@ -183,12 +168,10 @@ function Fate() {
     defaultAccordionData={defaultAccordionData}
 /></div>
 
-      <div className="dateDecodingCard">
-  {tariffs &&
-    tariffs?.map((tariff, index) => (
-      <DateDecodingCard key={index} data={tariff} />
-    ))}
-</div>
+   
+      <DateDecodingCard  />
+ 
+
 <div className="trainingCards">
       {Array.from({ length: 3 }, (_, index) => (
   <TrainingCard key={index} />

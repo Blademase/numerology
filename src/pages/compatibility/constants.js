@@ -38,11 +38,8 @@ export const newChakraData = [
       skyLabel: "M",
       skyKey: "t",
       earthLabel: "Ж",
-      earthKey: "u",
-      resultKey: "v",
-      spiritLabel: "Планетарное",
-      spiritKey: "x",
-      question: "Планетарное предназначение человека"
+      
+
     }
   ];
   
@@ -63,12 +60,20 @@ export const newChakraData = [
   
   export const years = Array.from({ length: 100 }, (_, i) => 2025 - i);
   export const defaultAccordionData = [
-    { key: 'blocksMoney', title: 'Что блокирует денежную энергию', description: 'Описание личных качеств', is_paid: true },
-    { key: 'destinationSociety', title: 'Предназначение для социума', description: 'Описание работы для души', is_paid: true },
-    { key: 'financeOpportunity', title: 'Самореализация', description: 'Описание кармы и задачи', is_paid: true },
-    { key: 'karmaTask', title: 'Карма и задача 40 лет', description: 'Описание задач из прошлых жизней', is_paid: true },
-    { key: 'talents', title: 'Таланты', description: 'Описание точки комфорта', is_paid: true },
-    { key: 'whatGivesMoney', title: 'Карма и задача 40 лет)', description: 'Описание самореализации', is_paid: true },
-    
+    { key: 'qualities', title: 'Личные качества', description: 'Описание личных качеств', is_paid: true },
+    { key: 'soulWork', title: 'Кем работать для души', description: 'Описание работы для души', is_paid: true },
+    { key: 'karma', title: 'Карма и задача 40 лет', description: 'Описание кармы и задачи', is_paid: true },
+    { key: 'pastLife', title: 'Задачи из прошлых жизней', description: 'Описание задач из прошлых жизней', is_paid: true },
+    { key: 'comfortPoint', title: 'Точка комфорта', description: 'Описание точки комфорта', is_paid: true },
+    { key: 'selfRealization', title: 'Самореализация', description: 'Описание самореализации', is_paid: true },
+    { key: 'pointPersonalPower', title: 'Точка личной силы', description: 'Описание точки личной силы', is_paid: true },
+    { key: 'genericPower', title: 'Сила рода', description: 'Описание силы рода', is_paid: true },
+    { key: 'parentChildKarma', title: 'Детско-родительская карма', description: 'Описание детско-родительской кармы', is_paid: true },
+    { key: 'spiritualKarma', title: 'Духовная карма', description: 'Описание духовной кармы', is_paid: true },
+    { key: 'matrixRelationship', title: 'Отношения в матрице', description: 'Описание отношений в матрице', is_paid: true },
+    { key: 'matrixMoney', title: 'Деньги в матрице', description: 'Описание денег в матрице', is_paid: true },
+    { key: 'soulMission', title: 'Миссия души', description: 'Описание миссии души', is_paid: true },
+    { key: 'diseasePredisposition', title: 'Предрасположенность к заболеваниям', description: 'Описание предрасположенности к заболеваниям', is_paid: true },
+    { key: 'healthMap', title: 'Карта здоровья', description: 'Описание карты здоровья', is_paid: true }
   ];
   

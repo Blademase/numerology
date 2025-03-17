@@ -1,10 +1,13 @@
+.containerRlc{
+  display: flex;
+  justify-content: center;
+}
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: transparent;
-    width: fit-content;
-   
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  grid-column-gap: 107px;
+  grid-row-gap:10px;
+  margin-bottom: 30px;
   }
   
   .card {

@@ -1,0 +1,120 @@
+$primary-color: #007bff;
+$primary-hover: #0056b3;
+$bg-color: white;
+$border-radius: 20px;
+$shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+.compatibilityRlc{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    background-color: rgb(12, 65, 57);
+    .compatibility{
+      margin-bottom: 30px;
+        .compabilitySchema{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+           margin-bottom: 30px;
+            .compabilitySchemaAction{
+              background-color: rgb(255, 255, 255);
+              width: 530px;
+              margin-top: 20px;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              border-top-left-radius: 20px;
+              border-top-right-radius: 20px;
+              button{
+                bottom: 50px;
+                background-color: $primary-color;
+                width: 300px;
+                height: 60px;
+                border-radius: 16px;
+                color: white;
+                font-size: 17px;
+              }
+            }
+        }
+        .pairSchema{
+            display: flex;
+            gap: 30px;
+            .schema{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+               
+                .NumerologyChart{
+                    width: 530px;
+                    height: 540px;
+                    background-color: rgb(255, 255, 255);
+                    border-bottom-right-radius: 20px;
+                    border-bottom-left-radius:20px ;
+                    margin-bottom: 20px;
+                }
+                .birthdate-container {
+                    display: flex;
+                    position: relative;
+                    justify-content: center;
+                    gap: 15px;
+                    padding: 20px;
+                    width:530px;
+                    background: $bg-color;
+                    border-top-left-radius: 20px;
+                    border-top-right-radius: 20px;
+                
+                    padding-top:50px ;
+                   
+                   
+                    .age{
+                      position: absolute;
+                      bottom: 15px;
+                    }
+                    .bd-text{
+                    position: absolute;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    top: 10px;
+                    }
+                    button{
+                        position: absolute;
+                        bottom: 50px;
+                        background-color: $primary-color;
+                        width: 180px;
+                        height: 40px;
+                        border-radius: 16px;
+                        color: white;
+                    }
+                    
+                    .select-container {
+                      display: flex;
+                      flex-direction: column;
+                      align-items: center;
+                
+                      .select-label {
+                        font-size: 14px;
+                        color: #666;
+                        margin-bottom: 5px;
+                        text-align: center;
+                      }
+                
+                      .custom-select {
+                        width: 100px;
+                        padding: 10px;
+                        border-radius: 25px;
+                        border: 1px solid #ccc;
+                        background: $bg-color;
+                        text-align: center;
+                        font-size: 16px;
+                        appearance: none;
+                        outline: none;
+                      }
+                    }
+                }
+            }
+        }
+    }
+}

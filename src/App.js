@@ -5,6 +5,8 @@
   import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Additional from "./pages/additional/additional";
 import './App.css'
+import Compatibility from "./pages/compatibility/compatibility";
+import Child from "./pages/child/child";
   function App() {
     return (
       <div className="App">
@@ -14,6 +16,8 @@ import './App.css'
         <Route path="/" element={<Fate />} />
         <Route path="/finance" element={<Finance />} />
         <Route path="/additional" element={<Additional/>}/>
+        <Route path="/compatibility" element={<Compatibility/>}/>
+        <Route path="/child" element={<Child/>}/>
       </Routes>
     </Router>
       </div>

@@ -13,9 +13,9 @@ const Accordions = ({ data, defaultAccordionData }) => {
   const [accordionData, setAccordionData] = useState(defaultAccordionData);
 
   useEffect(() => {
-    if (Object.keys(data).length > 0) {
+    if (Object?.keys(data)?.length > 0) {
       setAccordionData(
-        defaultAccordionData.map((item) => ({
+        defaultAccordionData?.map((item) => ({
           ...item,
           ...(data[item.key] || {}),
           is_paid: data[item.key] ? data[item.key].is_paid : true

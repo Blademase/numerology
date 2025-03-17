@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import NumerologyChart from "../../components/NumerologyChart/NumerologyChart";
-import InfoTable from "../../components/InfoTable/InfoTable";
-import Accordions from "../../components/Accordions/Accordions";
-import TrainingCard  from "../../components/TrainingCard/TrainingCard"
+import NumerologyChart from "../../components/NumerologyChart/NumerologyChart.js";
+import InfoTable from "../../components/InfoTable/InfoTable.js";
+import Accordions from "../../components/Accordions/Accordions.js";
+import TrainingCard  from "../../components/TrainingCard/TrainingCard.js"
 import { 
   newChakraData, 
   accordionConfig, 
@@ -11,35 +11,43 @@ import {
   months, 
   years,
   defaultAccordionData
-} from "./constants";
+} from "./constants.js";
 import { 
   calculateNumerology, 
-  getBlocksMoney,
-  getDestinationSociety,
-  getFincanceOpportunity,
-  getKarmaTask,
-  getTalents,
-  getWhatGivesMoney
+  getQualitiesData, 
+  getSoulWorkData, 
+  getKarmaData,  
+  getPastLife,
+  getComfortPoint,
+  getSelfRealization,
+  getPointPersonalPower,
+  getGenericPower,
+  getParentChildKarma,
+  getSpiritualKarma,
+  getMatrixRelationship,
+  getMatrixMoney,
+  getSoulMission,
+  getDiseasePredisposition,
+  getHealthMap
 
- 
-} from "../../services/financeService/financeService.js";
-import "./finance.scss";
+} from "../../services/fateService/fateService.js";
+import "./child.scss";
 import DateDecodingCard from "../../components/DateDecodingCard/DateDecodingCard.js"
-function Finance() {
+function Child() {
   const [numerologyData, setNumerologyData] = useState({});
   const [combinedData, setCombinedData] = useState({});
   const [year, setYear] = useState(2025);
   const [month, setMonth] = useState(months[0]);
   const [day, setDay] = useState(1);
   const [error, setError] = useState(null);
-
+  
   const updateCombinedData = (newData) => {
     setCombinedData((prevData) => ({
       ...prevData,
       ...newData
     }));
   };
-
+ 
   const getDaysInMonth = (month, year) => {
     if (month.name === "Февраль") {
       return year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0) ? 29 : 28;
@@ -71,28 +79,47 @@ function Finance() {
     try {
       const numerologyResponse = await calculateNumerology({ day, month: month.value, year });
       setNumerologyData(numerologyResponse);
-
-      const blocksMoneyResponse = await getBlocksMoney(numerologyResponse);
-      updateCombinedData({ blocksMoney: blocksMoneyResponse });
-
-      const destinationSocietyResponse = await getDestinationSociety(numerologyResponse);
-      updateCombinedData({destinationSociety:destinationSocietyResponse});
   
-      const financeOpportunityResponse= await getFincanceOpportunity(numerologyResponse);
-      updateCombinedData({financeOpportunity:financeOpportunityResponse})
-
-      const karmaTaskResponse = await getKarmaTask(numerologyResponse);
-      updateCombinedData({ karmaTask:karmaTaskResponse})
-      
-      const talentsResponse = await getTalents(numerologyResponse);
-      updateCombinedData({talents:talentsResponse})
-
-      const whatGivesMoneyResponse = await getWhatGivesMoney(numerologyResponse);
-      updateCombinedData({whatGivesMoney:whatGivesMoneyResponse})
+      const requests = [
+        getQualitiesData(numerologyResponse),
+        getSoulWorkData(numerologyResponse),
+        getKarmaData(numerologyResponse),
+        getPastLife(numerologyResponse),
+        getComfortPoint(numerologyResponse),
+        getSelfRealization(numerologyResponse),
+        getPointPersonalPower(numerologyResponse),
+        getGenericPower(numerologyResponse),
+        getParentChildKarma(numerologyResponse),
+        getSpiritualKarma(numerologyResponse),
+        getMatrixRelationship(numerologyResponse),
+        getMatrixMoney(numerologyResponse),
+        getSoulMission(numerologyResponse),
+        getDiseasePredisposition(numerologyResponse),
+        getHealthMap(numerologyResponse)
+      ];
+  
+      const results = await Promise.allSettled(requests);
+  
+      results.forEach((result, index) => {
+        if (result.status === "fulfilled") {
+          const key = [
+            "qualities", "soulWork", "karma", "pastLife", "comfortPoint",
+            "selfRealization", "pointPersonalPower", "genericPower",
+            "parentChildKarma", "spiritualKarma", "matrixRelationship",
+            "matrixMoney", "soulMission", "diseasePredisposition", "healthMap"
+          ][index];
+  
+          updateCombinedData({ [key]: result.value });
+        } else {
+          console.error(`Ошибка в запросе ${index + 1}:`, result.reason);
+        }
+      });
+  
     } catch (error) {
       console.error("Ошибка при выполнении расчёта:", error.message);
     }
   };
+  
 
   return (
     <div className="FateRlc">
@@ -134,7 +161,7 @@ function Finance() {
           <NumerologyChart numbers={numerologyData} onCalculate={handleCalculate} />
         </div>
 
-        <InfoTable chakraData={newChakraData} numbers={numerologyData} personalInfo={newPersonalInfo} showChakraTable={false} />
+        <InfoTable chakraData={newChakraData} numbers={numerologyData} personalInfo={newPersonalInfo} />
     
       </div>
       <div className="accordions">
@@ -142,13 +169,19 @@ function Finance() {
     data={combinedData} 
     defaultAccordionData={defaultAccordionData}
 /></div>
-  
-  <DateDecodingCard />
 
+   
+      <DateDecodingCard  />
+ 
 
+<div className="trainingCards">
+      {Array.from({ length: 3 }, (_, index) => (
+  <TrainingCard key={index} />
+))}
+</div>
      
     </div>
   );
 }
 
-export default Finance;
+export default Child;
