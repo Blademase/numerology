@@ -14,23 +14,14 @@ import {
 } from "./constants.js";
 import { 
   calculateNumerology, 
-  getQualitiesData, 
-  getSoulWorkData, 
-  getKarmaData,  
-  getPastLife,
-  getComfortPoint,
-  getSelfRealization,
-  getPointPersonalPower,
-  getGenericPower,
-  getParentChildKarma,
-  getSpiritualKarma,
-  getMatrixRelationship,
-  getMatrixMoney,
-  getSoulMission,
-  getDiseasePredisposition,
-  getHealthMap
-
-} from "../../services/fateService/fateService.js";
+  getChildBusiness, 
+  getChildDestiny,
+  getChildParentKarma,
+  getChildPersonal,
+  getChildPoint,
+  getChildSelf,
+  getTasksFromPast
+} from "../../services/childService/childService.js";
 import "./child.scss";
 import DateDecodingCard from "../../components/DateDecodingCard/DateDecodingCard.js"
 function Child() {
@@ -81,21 +72,13 @@ function Child() {
       setNumerologyData(numerologyResponse);
   
       const requests = [
-        getQualitiesData(numerologyResponse),
-        getSoulWorkData(numerologyResponse),
-        getKarmaData(numerologyResponse),
-        getPastLife(numerologyResponse),
-        getComfortPoint(numerologyResponse),
-        getSelfRealization(numerologyResponse),
-        getPointPersonalPower(numerologyResponse),
-        getGenericPower(numerologyResponse),
-        getParentChildKarma(numerologyResponse),
-        getSpiritualKarma(numerologyResponse),
-        getMatrixRelationship(numerologyResponse),
-        getMatrixMoney(numerologyResponse),
-        getSoulMission(numerologyResponse),
-        getDiseasePredisposition(numerologyResponse),
-        getHealthMap(numerologyResponse)
+        getChildBusiness(numerologyResponse),
+        getChildDestiny(numerologyResponse),
+        getChildParentKarma(numerologyResponse),
+        getChildPersonal(numerologyResponse),
+        getChildPoint(numerologyResponse),
+        getChildSelf(numerologyResponse),
+        getTasksFromPast(numerologyResponse)
       ];
   
       const results = await Promise.allSettled(requests);
@@ -103,10 +86,7 @@ function Child() {
       results.forEach((result, index) => {
         if (result.status === "fulfilled") {
           const key = [
-            "qualities", "soulWork", "karma", "pastLife", "comfortPoint",
-            "selfRealization", "pointPersonalPower", "genericPower",
-            "parentChildKarma", "spiritualKarma", "matrixRelationship",
-            "matrixMoney", "soulMission", "diseasePredisposition", "healthMap"
+            "childBusiness","childDestiny","childParentKarma","childPersonal","childPoint","childSelf","tasksFromPast"
           ][index];
   
           updateCombinedData({ [key]: result.value });

@@ -15,11 +15,7 @@ const Header = () => {
     <div className="headerRlc">
       <nav className="header">
         <div className="menu">
-          <div className={`menu-item home ${activeItem === "/" ? "active" : ""}`}>
-            <Link to="/" onClick={() => handleMenuClick("/")}>
-              <FaHome className="icon" />
-            </Link>
-          </div>
+        
           <div className={`menu-item ${activeItem === "/" ? "active" : ""}`}>
             <Link to="/" onClick={() => handleMenuClick("/")}>МАТРИЦА СУДЬБЫ</Link>
           </div>

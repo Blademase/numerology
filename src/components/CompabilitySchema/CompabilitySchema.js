@@ -3,27 +3,27 @@ import schema from "../../assets/shemaCompability.png"
 import "./CompabilitySchema.scss"
 import bracket from "../../assets/bezimeni-6-kopiya-8982948.webp"
 
-function CompabilitySchema({numbers,personalInfo}) {
+function CompabilitySchema({numbers = {},personalInfo}) {
   return (
     <div className="CompabilitySchemaRlc">
         <div className="CompabilitySchema">
         <img src={schema}/>
-        <div className="top">1</div>
-        <div className="rightTop">2</div>
-        <div className="right1">3</div>
-        <div className="right2">3</div>
-        <div className="rightBottom1">4</div>
-        <div className="rightBottom2">4</div>
-        <div className="rightBottom3">4</div>
-        <div className="rightBottom4">4</div>
-        <div className="bottom1">5</div>
-        <div className="bottom2">5</div>
-        <div className="bottom3">5</div>
-        <div className="leftBottom">6</div>
-        
-        <div className="left">7</div>
-        <div className="leftTop">8</div>
-        <div className="center">9</div>
+        <div className="top">{numbers?.b ?? 0}</div>
+        <div className="rightTop">{numbers.g ?? 0}</div>
+        <div className="right1">{numbers.c ?? 0}</div>
+        <div className="right2">{numbers.c1 ?? 0}</div>
+        <div className="rightBottom1">{numbers.h ?? 0}</div>
+        <div className="rightBottom2">{numbers.h1 ?? 0}</div>
+        <div className="rightBottom3">{numbers.h2 ?? 0}</div>
+        <div className="rightBottom4">{numbers.j ?? 0}</div>
+        <div className="bottom1">{numbers.d ?? 0}</div>
+        <div className="bottom2">{numbers.d1 ?? 0}</div>
+        <div className="bottom3">{numbers.d2 ?? 0}</div>
+        <div className="leftBottom">{numbers.i ?? 0}</div>
+      
+        <div className="left">{numbers.a ?? 0}</div>
+        <div className="leftTop">{numbers.f ?? 0}</div>
+        <div className="center">{numbers.e ?? 0}</div>
   
         </div>
         <div className="personalInfo">

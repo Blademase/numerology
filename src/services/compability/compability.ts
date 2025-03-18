@@ -1,4 +1,34 @@
-export const newChakraData = [
+export interface Chakra {
+    name: string;
+    color: string;
+  }
+  
+  export interface AccordionItem {
+    title: string;
+    key: string;
+    locked?: boolean;
+  }
+  
+  export interface PersonalInfo {
+    title: string;
+    description: string;
+    skyLabel: string;
+    skyKey: string;
+    earthLabel: string;
+    earthKey: string;
+    resultKey: string;
+    spiritLabel: string;
+    spiritKey: string;
+    question: string;
+  }
+  
+  export interface Month {
+    name: string;
+    value: number;
+    days: number;
+  }
+  
+  export const newChakraData: Chakra[] = [
     { name: "7. Сахасрара", color: "#8B5CF6" },
     { name: "6. Аджна", color: "#6366F1" },
     { name: "5. Вишудха", color: "#06B6D4" },
@@ -8,7 +38,7 @@ export const newChakraData = [
     { name: "1. Муладхара", color: "#EF4444" }
   ];
   
-  export const accordionConfig = [
+  export const accordionConfig: AccordionItem[] = [
     { title: "Личные качества", key: "qualities" },
     { title: "Кем работать для Души", key: "soulWork" },
     { title: "Карма и задача 40 лет", key: "karma" },
@@ -19,7 +49,7 @@ export const newChakraData = [
     { title: "Сила рода", key: "ancestralStrength", locked: true }
   ];
   
-  export const newPersonalInfo = [
+  export const newPersonalInfo: PersonalInfo[] = [
     {
       title: "Поиск себя:",
       description: "Соединение мужского и женского. Выстраивание взаимоотношений. Способности, навыки, умения.",
@@ -46,7 +76,7 @@ export const newChakraData = [
     }
   ];
   
-  export const months = [
+  export const months: Month[] = [
     { name: "Январь", value: 1, days: 31 },
     { name: "Февраль", value: 2, days: 28 },
     { name: "Март", value: 3, days: 31 },
@@ -59,17 +89,5 @@ export const newChakraData = [
     { name: "Октябрь", value: 10, days: 31 },
     { name: "Ноябрь", value: 11, days: 30 },
     { name: "Декабрь", value: 12, days: 31 }
-  ];
-  
-  export const years = Array.from({ length: 100 }, (_, i) => 2025 - i);
-  export const defaultAccordionData = [
-    { key: 'childBusiness', title: 'Главный талант ребенка от рождения', description: 'Описание личных качеств', is_paid: true },
-    { key: 'childDestiny', title: 'Предназначение ребенка', description: 'Описание работы для души', is_paid: true },
-    { key: 'childParentKarma', title: 'Детско-родительская карма', description: 'Описание кармы и задачи', is_paid: true },
-    { key: 'childPersonal', title: 'Личные качества', description: 'Описание задач из прошлых жизней', is_paid: true },
-    { key: 'childPoint', title: 'Точка душевного комфорта ребенка', description: 'Описание точки комфорта', is_paid: true },
-    { key: 'childSelf', title: 'Самореализация ребенка', description: 'Описание самореализации', is_paid: true },
-    { key: 'tasksFromPast', title: 'Задачи, которые тянутся из прошлых жизней', description: 'Описание точки личной силы', is_paid: true },
-    
   ];
   
