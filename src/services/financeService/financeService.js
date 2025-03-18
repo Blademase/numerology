@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://86.107.44.212";
+const BASE_URL = "https://matrixaaa.duckdns.org";
 
 const handleError = (error) => {
     console.error("Ошибка при получении данных:", error.message);

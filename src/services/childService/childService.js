@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://86.107.44.212";
+const BASE_URL = "https://matrixaaa.duckdns.org";
 
 const handleError = (error) => {
     console.error("Ошибка при получении данных:", error.message);
@@ -9,7 +9,7 @@ const handleError = (error) => {
 
 export const calculateNumerology = async ({ day, month, year }) => {
     try {
-        const response = await axios.post(`http://86.107.44.212/other/calculate-matrix/`, {
+        const response = await axios.post(`${BASE_URL}/other/calculate-matrix/`, {
             day,
             month,
             year,

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // Базовый URL для всех запросов
-const BASE_URL = "http://86.107.44.212";
+const BASE_URL = "https://matrixaaa.duckdns.org";
 
 // Функция для обработки ошибок
 const handleError = (error) => {
@@ -12,7 +12,7 @@ const handleError = (error) => {
 // 📌 Функция для расчёта матрицы судьбы
 export const calculateNumerology = async ({ day, month, year }) => {
     try {
-        const response = await axios.post(`http://86.107.44.212/other/calculate-matrix/`, {
+        const response = await axios.post(`${BASE_URL}/other/calculate-matrix/`, {
             day,
             month,
             year,
