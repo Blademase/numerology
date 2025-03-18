@@ -1,44 +1,73 @@
-import React, { useState } from "react";
-import { FaHome, FaSignInAlt } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+import { FaSignInAlt, FaUser } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
 import "./Header.scss";
+import SignIn from "../SignIn/SignIn";
 
 const Header = () => {
   const location = useLocation();
   const [activeItem, setActiveItem] = useState(location.pathname);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  const handleMenuClick = (path) => {
-    setActiveItem(path);
+  // Проверяем наличие токенов при монтировании компонента
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken");
+    setIsAuthenticated(!!accessToken); // true, если токен есть
+  }, []);
+
+  // Обработчик выхода
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    setIsAuthenticated(false);
   };
 
   return (
     <div className="headerRlc">
       <nav className="header">
         <div className="menu">
-        
           <div className={`menu-item ${activeItem === "/" ? "active" : ""}`}>
-            <Link to="/" onClick={() => handleMenuClick("/")}>МАТРИЦА СУДЬБЫ</Link>
+            <Link to="/" onClick={() => setActiveItem("/")}>МАТРИЦА СУДЬБЫ</Link>
           </div>
           <div className={`menu-item ${activeItem === "/finance" ? "active" : ""}`}>
-            <Link to="/finance" onClick={() => handleMenuClick("/finance")}>ФИНАНСЫ</Link>
+            <Link to="/finance" onClick={() => setActiveItem("/finance")}>ФИНАНСЫ</Link>
           </div>
           <div className={`menu-item ${activeItem === "/compatibility" ? "active" : ""}`}>
-            <Link to="/compatibility" onClick={() => handleMenuClick("/compatibility")}>СОВМЕСТИМОСТЬ</Link>
+            <Link to="/compatibility" onClick={() => setActiveItem("/compatibility")}>СОВМЕСТИМОСТЬ</Link>
           </div>
           <div className={`menu-item ${activeItem === "/child" ? "active" : ""}`}>
-            <Link to="/child" onClick={() => handleMenuClick("/child")}>ДЕТСКАЯ</Link>
+            <Link to="/child" onClick={() => setActiveItem("/child")}>ДЕТСКАЯ</Link>
           </div>
           <div className={`menu-item ${activeItem === "/forecast-2025" ? "active" : ""}`}>
-            <Link to="/forecast-2025" onClick={() => handleMenuClick("/forecast-2025")}>ПРОГНОЗ 2025</Link>
+            <Link to="/forecast-2025" onClick={() => setActiveItem("/forecast-2025")}>ПРОГНОЗ 2025</Link>
           </div>
           <div className={`menu-item ${activeItem === "/additional" ? "active" : ""}`}>
-            <Link to="/additional" onClick={() => handleMenuClick("/additional")}>ДОП РАСЧЕТЫ</Link>
+            <Link to="/additional" onClick={() => setActiveItem("/additional")}>ДОП РАСЧЕТЫ</Link>
           </div>
         </div>
-        <button className="login-button">
-          <FaSignInAlt className="icon" /> ВОЙТИ
-        </button>
+
+        {/* Проверяем, вошел ли пользователь */}
+        {isAuthenticated ? (
+          <div className="logout">
+          <button className="logout-button" onClick={handleLogout}>
+            <FaUser className="icon" /> <div>ВЫЙТИ</div>
+          </button>
+          </div>
+        ) : (
+          <button className="login-button" onClick={() => setIsModalOpen(true)}>
+            <FaSignInAlt className="icon" /> ВОЙТИ
+          </button>
+        )}
       </nav>
+
+      <SignIn 
+        isOpen={isModalOpen} 
+        onClose={() => {
+          setIsModalOpen(false);
+          setIsAuthenticated(!!localStorage.getItem("accessToken")); // Обновляем состояние после входа
+        }} 
+      />
     </div>
   );
 };
