@@ -7,10 +7,10 @@ const handleError = (error) => {
     throw error;
 };
 
-export const calculateNumerology = async ({ day, month, year, day1, month1, year1 }) => {
+export const calculateCompabilityNumerology = async ({ day, month, year, day1, month1, year1 }) => {
     try {
         const [compatibilityResponse, matrixResponse] = await Promise.all([
-            axios.post(`http://86.107.44.212/other/calculate-compatibility/`, {
+            axios.post(`https://matrixaaa.duckdns.org/other/calculate-compatibility/`, {
                 day,
                 month, 
                 year,
@@ -18,10 +18,15 @@ export const calculateNumerology = async ({ day, month, year, day1, month1, year
                 month2: month1,
                 year2: year1,
             }),
-            axios.post(`http://86.107.44.212/other/calculate-matrix/`, {
+            axios.post(`https://matrixaaa.duckdns.org/other/calculate-matrix/`, {
                 day,
                 month,
                 year,
+            }),
+            axios.post(`https://matrixaaa.duckdns.org/other/calculate-matrix/`, {
+                day:day1,
+                month:month1,
+                year:year1,
             })
         ]);
 

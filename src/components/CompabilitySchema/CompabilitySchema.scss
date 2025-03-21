@@ -45,7 +45,7 @@
         width: 530px;
         height: 540px;
     }
-    .top{
+    .top {
         position: absolute;
         top: 10px;
         display: flex;
@@ -55,7 +55,11 @@
         width: 40px;
         height: 40px;
         border-radius: 50px;
-        background-color: rebeccapurple;
+        background-color: #ae309a;
+        
+        // Создаем зазор с помощью box-shadow
+        box-shadow: 0 0 0 1px white, /* Зазор между */
+                    0 0 0 3px #ae309a; /* "Outline" эффект */
     }
     .rightTop{
         position: absolute;
@@ -67,7 +71,9 @@
         width: 40px;
         height: 40px;
         border-radius: 50px;
-        background-color: rebeccapurple;
+        background-color: white;
+        box-shadow: 0 0 0 1px white, /* Зазор между */
+                    0 0 0 3px #ae309a; /* "Outline" эффект */
     }
     .right1{
         position: absolute;
@@ -79,7 +85,9 @@
         width: 40px;
         height: 40px;
         border-radius: 50px;
-        background-color: rebeccapurple;
+        background-color: #eb4b41;
+        box-shadow: 0 0 0 1px white, /* Зазор между */
+                    0 0 0 3px #ae309a; /* "Outline" эффект */
     }
     .right2{
         position: absolute;
@@ -91,7 +99,9 @@
         width: 20px;
         height: 20px;
         border-radius: 50px;
-        background-color: rebeccapurple;
+        background-color: white;
+        box-shadow: 0 0 0 1px white, /* Зазор между */
+                    0 0 0 3px #ae309a; /* "Outline" эффект */
     }
     .rightBottom1{
         position: absolute;
@@ -103,7 +113,9 @@
         width: 40px;
         height: 40px;
         border-radius: 50px;
-        background-color: rebeccapurple;  
+        background-color: white;  
+        box-shadow: 0 0 0 1px white, /* Зазор между */
+                    0 0 0 3px #ae309a; /* "Outline" эффект */
     }
     .rightBottom2{
         position: absolute;
@@ -115,7 +127,9 @@
         width: 20px;
         height: 20px;
         border-radius: 50px;
-        background-color: rebeccapurple;     
+        background-color: white;     
+        box-shadow: 0 0 0 1px white, /* Зазор между */
+                    0 0 0 3px #ae309a; /* "Outline" эффект */
     }
     .rightBottom3{
         position: absolute;
@@ -127,7 +141,9 @@
         width: 20px;
         height: 20px;
         border-radius: 50px;
-        background-color: rebeccapurple;     
+        background-color: white;     
+        box-shadow: 0 0 0 1px white, /* Зазор между */
+                    0 0 0 3px #ae309a; /* "Outline" эффект */
     }
     .rightBottom4{
         position: absolute;
@@ -139,7 +155,9 @@
         width: 20px;
         height: 20px;
         border-radius: 50px;
-        background-color: rebeccapurple;     
+        background-color: white;     
+        box-shadow: 0 0 0 1px white, /* Зазор между */
+                    0 0 0 3px #ae309a; /* "Outline" эффект */
     }
     .bottom1{
         position: absolute;
@@ -150,7 +168,9 @@
         width: 40px;
         height: 40px;
         border-radius: 50px;
-        background-color: rebeccapurple; 
+        background-color: white; 
+        box-shadow: 0 0 0 1px white, /* Зазор между */
+                    0 0 0 3px #ae309a; /* "Outline" эффект */
     }
     .bottom2{
         position: absolute;
@@ -162,7 +182,9 @@
         width: 30px;
         height: 30px;
         border-radius: 50px;
-        background-color: rebeccapurple; 
+        background-color: white; 
+        box-shadow: 0 0 0 1px white, /* Зазор между */
+                    0 0 0 3px #ae309a; /* "Outline" эффект */
     }
     .bottom3{
         position: absolute;
@@ -173,7 +195,9 @@
         width: 20px;
         height: 20px;
         border-radius: 50px;
-        background-color: rebeccapurple; 
+        background-color: white; 
+        box-shadow: 0 0 0 1px white, /* Зазор между */
+                    0 0 0 3px #ae309a; /* "Outline" эффект */
     }
     .leftBottom{
         position: absolute;
@@ -185,7 +209,9 @@
         width: 40px;
         height: 40px;
         border-radius: 50px;
-        background-color: rebeccapurple; 
+        background-color: white; 
+        box-shadow: 0 0 0 1px white, /* Зазор между */
+                    0 0 0 3px #ae309a; /* "Outline" эффект */
     }
     .left{
         position: absolute;
@@ -197,7 +223,9 @@
         width: 40px;
         height: 40px;
         border-radius: 50px;
-        background-color: rebeccapurple; 
+        background-color: white; 
+        box-shadow: 0 0 0 1px white, /* Зазор между */
+                    0 0 0 3px #ae309a; /* "Outline" эффект */
     }
     .leftTop{
         position: absolute;
@@ -209,18 +237,23 @@
         width: 40px;
         height: 40px;
         border-radius: 50px;
-        background-color: rebeccapurple; 
+        background-color: white; 
+        box-shadow: 0 0 0 1px white, /* Зазор между */
+                    0 0 0 3px #ae309a; /* "Outline" эффект */
     }
     .center{
         position: absolute;
-        top: 15%;
+        top: 46.2%;
         display: flex;
         justify-content: center;
         align-items: center;
-        left: 15%;
+        left: 46.4%;
         width: 40px;
         height: 40px;
         border-radius: 50px;
-        background-color: rebeccapurple;    
+        background-color: rgb(204, 4, 4);   
+        box-shadow: 0 0 0 1px white, /* Зазор между */
+                    0 0 0 3px #ae309a; /* "Outline" эффект */ 
     }
-}}
+}
+}

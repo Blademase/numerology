@@ -32,14 +32,15 @@ export const newChakraData = [
       spiritKey: "w",
       question: "Духовный зачет. Кто я для бога? Где божественное во мне?"
     },
+
     {
       title: "Социализация:",
       description: "Социальная и родовая системы. Результаты и признание в социуме.",
       skyLabel: "M",
       skyKey: "t",
       earthLabel: "Ж",
-      
-
+      earthKey: "u",
+      resultKey: "v",
     }
   ];
   

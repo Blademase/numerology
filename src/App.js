@@ -2,6 +2,7 @@
   import Fate from "./pages/fate/fate";
   import Finance from "./pages/finance/finance";
   import Header from "./components/Header/Header";
+  import Footer from "./components/Footer/Footer"
   import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Additional from "./pages/additional/additional";
 import './App.css'
@@ -19,6 +20,7 @@ import Child from "./pages/child/child";
         <Route path="/compatibility" element={<Compatibility/>}/>
         <Route path="/child" element={<Child/>}/>
       </Routes>
+      <Footer/>
     </Router>
       </div>
     );

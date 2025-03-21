@@ -16,6 +16,7 @@ import Accordions from "../../components/Accordions/Accordions";
 import DateDecodingCard from "../../components/DateDecodingCard/DateDecodingCard.js";
 import { 
   calculateNumerology, 
+  calculateCompabilityNumerology,
   getChildBusiness, 
   getChildDestiny,
   getChildParentKarma,
@@ -27,6 +28,9 @@ import {
 function Compatibility() {
   const [numerologyData, setNumerologyData] = useState({});
   const [combinedData, setCombinedData] = useState({});
+  const [numerologyData1, setNumerologyData1] = useState({});
+const [numerologyData2, setNumerologyData2] = useState({});
+
   // Первая дата
   const [year, setYear] = useState(2025);
   const [month, setMonth] = useState(months[0]);
@@ -83,32 +87,45 @@ function Compatibility() {
     }
   };
   const handleCalculate = async () => {
+    setNumerologyData({})
+    setNumerologyData1({});
+    setNumerologyData2({});
     setCombinedData({});
-    setNumerologyData({});
-    console.log("fuck");
 
     try {
-        // Запрос совместимости и матрицы чисел
-        const { compatibilityData, matrixData } = await calculateNumerology({
-            day,
-            month: month.value,  // Отправляем номер месяца
-            year,
-            day1,
-            month1: month1.value, // Отправляем номер месяца
-            year1
-        });
+        const [compatibilityResponse, matrixResponse1, matrixResponse2] = await Promise.all([
+            axios.post(`https://matrixaaa.duckdns.org/other/calculate-compatibility/`, {
+                day,
+                month: month.value,
+                year,
+                day2: day1,
+                month2: month1.value,
+                year2: year1,
+            }),
+            axios.post(`https://matrixaaa.duckdns.org/other/calculate-matrix/`, {
+                day,
+                month: month.value,
+                year,
+            }),
+            axios.post(`https://matrixaaa.duckdns.org/other/calculate-matrix/`, {
+                day: day1,
+                month: month1.value,
+                year: year1,
+            })
+        ]);
 
-        // Сохраняем результаты в стейты
-        setNumerologyData(matrixData); // Сохраняем матрицу чисел
-
+        setNumerologyData(compatibilityResponse.data);
+        setNumerologyData1(matrixResponse1.data);
+        setNumerologyData2(matrixResponse2.data);
+        
         const requests = [
-            getChildBusiness(matrixData),   // Используем matrixData, т.к. в нем данные чисел
-            getChildDestiny(matrixData),
-            getChildParentKarma(matrixData),
-            getChildPersonal(matrixData),
-            getChildPoint(matrixData),
-            getChildSelf(matrixData),
-            getTasksFromPast(matrixData),
+            getChildBusiness(matrixResponse1.data),
+            getChildDestiny(matrixResponse1.data),
+            getChildParentKarma(matrixResponse1.data),
+            getChildPersonal(matrixResponse1.data),
+            getChildPoint(matrixResponse1.data),
+            getChildSelf(matrixResponse1.data),
+            getTasksFromPast(matrixResponse1.data),
         ];
 
         const results = await Promise.allSettled(requests);
@@ -134,6 +151,7 @@ function Compatibility() {
         console.error("Ошибка при выполнении расчёта:", error.message);
     }
 };
+
 
   
   // Функция для запроса совместимости
@@ -175,9 +193,9 @@ function Compatibility() {
             </div>
 
             <div className="NumerologyChart">
-              <NumerologyChart numbers={numerologyData} />
+              <NumerologyChart numbers={numerologyData1} />
             </div>
-            <InfoTable chakraData={newChakraData} numbers={numerologyData} personalInfo={newPersonalInfo} showChakraTable={false} />
+            <InfoTable chakraData={newChakraData} numbers={numerologyData1} personalInfo={newPersonalInfo} showChakraTable={false} />
           </div>
 
           <div className="schema">
@@ -212,9 +230,9 @@ function Compatibility() {
             </div>
 
             <div className="NumerologyChart">
-              <NumerologyChart numbers={numerologyData} />
+              <NumerologyChart numbers={numerologyData2} />
             </div>
-            <InfoTable chakraData={newChakraData} numbers={numerologyData} personalInfo={newPersonalInfo} showChakraTable={false} />
+            <InfoTable chakraData={newChakraData} numbers={numerologyData2} personalInfo={newPersonalInfo} showChakraTable={false} />
           </div>
         </div>
 

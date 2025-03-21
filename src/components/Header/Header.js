@@ -10,10 +10,9 @@ const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  // Проверяем наличие токенов при монтировании компонента
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
-    setIsAuthenticated(!!accessToken); // true, если токен есть
+    setIsAuthenticated(!!accessToken);
   }, []);
 
   // Обработчик выхода
@@ -47,7 +46,6 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Проверяем, вошел ли пользователь */}
         {isAuthenticated ? (
           <div className="logout">
           <button className="logout-button" onClick={handleLogout}>

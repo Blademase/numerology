@@ -1,0 +1,97 @@
+.footerRlc {
+    background-color: rgb(12, 65, 57);
+    display: flex;
+    justify-content: center; 
+    position: relative;
+    @keyframes gradientMove {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+    
+    .horizontaLine {
+        position: absolute;
+        width: 90%;
+        height: 1px; // Чуть толще для видимости
+        background: linear-gradient(90deg, #22a12c, #ffcc00, #ff5733, #22a12c); // Градиентный цвет
+        background-size: 300% 100%; // Увеличенный размер для плавного движения
+        animation: gradientMove 4s infinite linear; // Бесконечная анимация
+        left: 50%;
+        transform: translateX(-50%); // Центрируем
+    }
+    
+    .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); // Затемненный фон
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+    
+    .modal-content {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        max-width: 600px; // Ширина модального окна
+        max-height: 80vh; // Ограничиваем высоту
+        overflow-y: auto; // Добавляем вертикальную прокрутку, если контент большой
+        text-align: left;
+        position: relative;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    
+    .close {
+        position: absolute;
+        top: -5px;
+        right: 10px;
+        font-size: 24px;
+        cursor: pointer;
+    }
+    
+    .footerOther{
+        display: flex; 
+        align-items: center;
+        padding-left: 60px;
+        .icons {
+            display: flex;
+            gap: 8px;
+            padding-right: 60px;
+            img {
+                height: 38px;
+                width: 38px;
+                min-width: 38px;
+                min-height: 38px;
+                cursor: pointer;
+            }
+    }
+    .footer {
+        display: flex;
+        justify-content: center; // Центрирует элементы внутри
+        align-items: start; // Выравнивает элементы по вертикали
+        width: 100%;
+        gap: 60px; // Добавляет расстояние между блоками
+        color: white;
+      
+    }
+    
+    }
+    .docs {
+        display: flex;
+        flex-direction: column;
+        span{
+            cursor: pointer;
+        }
+    }
+    .help{
+        cursor: pointer;
+    }
+    .adress {
+        margin: 0;
+        text-align: start; // Выравнивает текст внутри блока
+    }
+}
