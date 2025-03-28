@@ -11,18 +11,43 @@ import './Accordions.scss';
 const Accordions = ({ data, defaultAccordionData }) => {
   const [expanded, setExpanded] = useState(null);
   const [accordionData, setAccordionData] = useState(defaultAccordionData);
-
   useEffect(() => {
-    if (Object?.keys(data)?.length > 0) {
-      setAccordionData(
-        defaultAccordionData?.map((item) => ({
-          ...item,
-          ...(data[item.key] || {}),
-          is_paid: data[item.key] ? data[item.key].is_paid : true
-        }))
-      );
+    if (Object.keys(data).length > 0) {
+      const normalizedData = {};
+  
+      Object.keys(data).forEach((key) => {
+        const value = data[key];
+  
+        if (Array.isArray(value) && value.length > 0 && typeof value[0] === 'object') {
+          normalizedData[key] = {
+            ...value[0],
+            is_paid: false
+          };
+        } else if (typeof value === 'object') {
+          normalizedData[key] = {
+            ...value,
+            is_paid: value.is_paid ?? false
+          };
+        }
+      });
+  
+      console.log("Normalized data:", normalizedData);  // Логирование
+      const newAccordionData = Object.entries(normalizedData).map(([key, value]) => {
+        return {
+          key,
+          ...value, // сначала все поля
+          title: value.category?.title || value.title || key, // потом title ЗАНОВО
+          description: value.description || '',
+          is_paid: value.is_paid ?? false
+        };
+      });
+  
+      setAccordionData(newAccordionData);
     }
   }, [data]);
+  
+  
+  
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : null);
@@ -34,16 +59,56 @@ const Accordions = ({ data, defaultAccordionData }) => {
       <div className="talent-block">
         <Typography variant="h6">{label}</Typography>
         <Typography variant="subtitle1">{talent.title}</Typography>
-        <Typography variant="body2">{talent.description}</Typography>
+  
+        {talent.description?.includes('<') ? (
+          <Typography
+            variant="body2"
+            dangerouslySetInnerHTML={{ __html: talent.description }}
+          />
+        ) : (
+          <Typography variant="body2">{talent.description}</Typography>
+        )}
       </div>
     );
   };
-
+  
   const renderNestedTalents = (content) => {
-    return Object.keys(content)
-      .filter((key) => typeof content[key] === 'object' && content[key] !== null)
-      .map((key, index) => renderTalent(content[key], key.replace(/_/g, ' ')));
+    const talents = [];
+  
+    for (const [key, value] of Object.entries(content)) {
+      if (
+        typeof value === 'object' &&
+        value !== null &&
+        (value.title || value.description) &&
+        key !== 'category'
+      ) {
+        talents.push(renderTalent(value, key.replace(/_/g, ' ')));
+      }
+    }
+  
+    if (
+      content.category &&
+      (content.category.title || content.category.description)
+    ) {
+      talents.push(renderTalent(content.category, 'Категория'));
+    }
+  
+    if (typeof content.category === 'object') {
+      for (const [key, value] of Object.entries(content.category)) {
+        if (
+          typeof value === 'object' &&
+          value !== null &&
+          (value.title || value.description)
+        ) {
+          talents.push(renderTalent(value, key.replace(/_/g, ' ')));
+        }
+      }
+    }
+  
+    return talents;
   };
+  
+  
 
   return (
     <div className="accordion-container">
@@ -66,10 +131,14 @@ const Accordions = ({ data, defaultAccordionData }) => {
           </AccordionSummary>
 
           {!content.is_paid && (
-            <AccordionDetails>
-              <Typography variant="body1" dangerouslySetInnerHTML={{ __html: content?.description ?? 'Нет описания' }} />
-              {renderNestedTalents(content)}
-            </AccordionDetails>
+         <AccordionDetails>
+         <Typography
+           variant="body1"
+           dangerouslySetInnerHTML={{ __html: content?.description ?? 'Нет описания' }}
+         />
+         {renderNestedTalents(content)}
+       </AccordionDetails>
+       
           )}
         </Accordion>
       ))}

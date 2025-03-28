@@ -12,12 +12,13 @@ const handleError = (error) => {
 // 📌 Функция для расчёта матрицы судьбы
 export const calculateNumerology = async ({ day, month, year }) => {
     try {
-        const response = await axios.post(`${BASE_URL}/other/calculate-matrix/`, {
+        const response = await axios.post(`${BASE_URL}/matrix_fate/calculate-matrix/`, {
             day,
             month,
             year,
+            category:'matrix_fate'
         });
-        return response.data;
+        return response.data.matrix;
     } catch (error) {
         handleError(error);
     }

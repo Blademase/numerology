@@ -94,7 +94,7 @@ const [numerologyData2, setNumerologyData2] = useState({});
 
     try {
         const [compatibilityResponse, matrixResponse1, matrixResponse2] = await Promise.all([
-            axios.post(`https://matrixaaa.duckdns.org/other/calculate-compatibility/`, {
+            axios.post(`https://matrixaaa.duckdns.org/compatibility/calculate-compatibility/`, {
                 day,
                 month: month.value,
                 year,
@@ -102,12 +102,12 @@ const [numerologyData2, setNumerologyData2] = useState({});
                 month2: month1.value,
                 year2: year1,
             }),
-            axios.post(`https://matrixaaa.duckdns.org/other/calculate-matrix/`, {
+            axios.post(`https://matrixaaa.duckdns.org/compatibility/calculate-matrix/`, {
                 day,
                 month: month.value,
                 year,
             }),
-            axios.post(`https://matrixaaa.duckdns.org/other/calculate-matrix/`, {
+            axios.post(`https://matrixaaa.duckdns.org/compatibility/calculate-matrix/`, {
                 day: day1,
                 month: month1.value,
                 year: year1,
@@ -244,7 +244,7 @@ const [numerologyData2, setNumerologyData2] = useState({});
           <CompabilitySchema personalInfo={newPersonalInfo} numbers={numerologyData}  />
         </div>
         
-        <Accordions data={defaultAccordionData} defaultAccordionData={defaultAccordionData} />
+        <Accordions data={combinedData} defaultAccordionData={defaultAccordionData} />
       </div>
 
       <DateDecodingCard />

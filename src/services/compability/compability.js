@@ -10,7 +10,7 @@ const handleError = (error) => {
 export const calculateCompabilityNumerology = async ({ day, month, year, day1, month1, year1 }) => {
     try {
         const [compatibilityResponse, matrixResponse] = await Promise.all([
-            axios.post(`https://matrixaaa.duckdns.org/other/calculate-compatibility/`, {
+            axios.post(`https://matrixaaa.duckdns.org/compatibility/calculate-compatibility/`, {
                 day,
                 month, 
                 year,
@@ -18,12 +18,12 @@ export const calculateCompabilityNumerology = async ({ day, month, year, day1, m
                 month2: month1,
                 year2: year1,
             }),
-            axios.post(`https://matrixaaa.duckdns.org/other/calculate-matrix/`, {
+            axios.post(`https://matrixaaa.duckdns.org/compatibility/calculate-matrix/`, {
                 day,
                 month,
                 year,
             }),
-            axios.post(`https://matrixaaa.duckdns.org/other/calculate-matrix/`, {
+            axios.post(`https://matrixaaa.duckdns.org/compatibility/calculate-matrix/`, {
                 day:day1,
                 month:month1,
                 year:year1,
@@ -48,7 +48,7 @@ export const getChildBusiness= async ({ a }) => {
             arcana_a: a,
         };
         const response = await axios.get(`${BASE_URL}/child/child_business_card/1/`, { params });
-        return response.data;
+        return response.data.category;
     } catch (error) {
         handleError(error);
     }

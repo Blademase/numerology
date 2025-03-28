@@ -1,26 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { FaSignInAlt, FaUser } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux"; // Импортируем useDispatch и useSelector из Redux
+import { loginAction, logoutAction } from "../../store/store"; // Экшены для авторизации
 import "./Header.scss";
 import SignIn from "../SignIn/SignIn";
 
 const Header = () => {
   const location = useLocation();
+  const dispatch = useDispatch(); // Диспатчим экшены
+  const isAuthenticated = useSelector((state) => state.isAuthenticated); // Селектор для авторизации из Redux
   const [activeItem, setActiveItem] = useState(location.pathname);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
-    setIsAuthenticated(!!accessToken);
-  }, []);
+    if (accessToken) {
+      dispatch(loginAction()); // Диспатчим логин, если токен есть
+    } else {
+      dispatch(logoutAction()); // Если токен отсутствует, диспатчим лог-аут
+    }
+  }, [dispatch]); // Этот useEffect теперь будет запускаться каждый раз при изменении dispatch
 
-  // Обработчик выхода
-  const handleLogout = () => {
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("refreshToken");
-    setIsAuthenticated(false);
-  };
+
 
   return (
     <div className="headerRlc">
@@ -38,8 +40,8 @@ const Header = () => {
           <div className={`menu-item ${activeItem === "/child" ? "active" : ""}`}>
             <Link to="/child" onClick={() => setActiveItem("/child")}>ДЕТСКАЯ</Link>
           </div>
-          <div className={`menu-item ${activeItem === "/forecast-2025" ? "active" : ""}`}>
-            <Link to="/forecast-2025" onClick={() => setActiveItem("/forecast-2025")}>ПРОГНОЗ 2025</Link>
+          <div className={`menu-item ${activeItem === "/prognoses" ? "active" : ""}`}>
+            <Link to="/prognoses" onClick={() => setActiveItem("/prognoses")}>ПРОГНОЗ 2025</Link>
           </div>
           <div className={`menu-item ${activeItem === "/additional" ? "active" : ""}`}>
             <Link to="/additional" onClick={() => setActiveItem("/additional")}>ДОП РАСЧЕТЫ</Link>
@@ -48,9 +50,9 @@ const Header = () => {
 
         {isAuthenticated ? (
           <div className="logout">
-          <button className="logout-button" onClick={handleLogout}>
-            <FaUser className="icon" /> <div>ВЫЙТИ</div>
-          </button>
+            <button className="logout-button">
+              <FaUser className="icon" /> <div><Link to="/cabinet">Личный кабинет</Link></div>
+            </button>
           </div>
         ) : (
           <button className="login-button" onClick={() => setIsModalOpen(true)}>
@@ -63,7 +65,6 @@ const Header = () => {
         isOpen={isModalOpen} 
         onClose={() => {
           setIsModalOpen(false);
-          setIsAuthenticated(!!localStorage.getItem("accessToken")); // Обновляем состояние после входа
         }} 
       />
     </div>

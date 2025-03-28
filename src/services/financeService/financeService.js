@@ -9,12 +9,13 @@ const handleError = (error) => {
 
 export const calculateNumerology = async ({ day, month, year }) => {
     try {
-        const response = await axios.post(`${BASE_URL}/other/calculate-matrix/`, {
+        const response = await axios.post(`${BASE_URL}/finance/calculate-finance-matrix/`, {
             day,
             month,
             year,
+            category:'finance'
         });
-        return response.data;
+        return response.data.matrix;
     } catch (error) {
         handleError(error);
     }

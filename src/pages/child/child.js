@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import NumerologyChart from "../../components/NumerologyChart/NumerologyChart.js";
 import InfoTable from "../../components/InfoTable/InfoTable.js";
 import Accordions from "../../components/Accordions/Accordions.js";

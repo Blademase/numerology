@@ -7,14 +7,16 @@ const handleError = (error) => {
     throw error;
 };
 
+   
 export const calculateNumerology = async ({ day, month, year }) => {
     try {
-        const response = await axios.post(`${BASE_URL}/other/calculate-matrix/`, {
+        const response = await axios.post(`${BASE_URL}/child/calculate-child-matrix/`, {
             day,
             month,
             year,
+            category:"child"
         });
-        return response.data;
+        return response.data.matrix;
     } catch (error) {
         handleError(error);
     }
