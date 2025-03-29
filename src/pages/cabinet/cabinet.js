@@ -1,55 +1,36 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { Link, Outlet } from "react-router-dom";  // Используем Outlet для отображения контента
 import { useDispatch, useSelector } from "react-redux"; // Импортируем хуки для работы с Redux
 import { loginAction, logoutAction } from "../../store/store"; // Экшены для авторизации
 import "./cabinet.scss";
-import axios from "axios";
 
 function Cabinet() {
   const dispatch = useDispatch();
-  const isAuthenticated = useSelector((state) => state.isAuthenticated); // Получаем состояние авторизации из Redux
-  const accessToken = localStorage.getItem("accessToken"); // Получаем токен из Redux
-  const BASE_URL = "https://matrixaaa.duckdns.org";
+  const isAuthenticated = useSelector((state) => state.isAuthenticated);
+  const [showConfirm, setShowConfirm] = useState(false);
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
-    dispatch(logoutAction()); // Диспатчим действие логаута
+    dispatch(logoutAction());
   };
-
-  const getHistory = async (accessToken) => {
-    console.log(accessToken);
-
-    try {
-      if (accessToken) {
-        const response = await axios.get(
-          `${BASE_URL}/matrix_auth/history/`,
-          {
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          }
-        );
-
-        console.log(response);
-      } else {
-        console.log("Токен не найден");
-      }
-    } catch (error) {
-      console.error("Ошибка при запросе:", error);
-    }
+  
+  const handleConfirmLogout = () => {
+    setShowConfirm(true);
   };
-  useEffect(() => {
-    // Вызов getHistory, когда компонент загружается
-    if (accessToken) {
-      getHistory(accessToken);
-    } else {
-      console.log("Токен не найден при загрузке страницы");
-    }
-  }, [accessToken]); // Зависимость от accessToken, вызовется только если токен изменится
-
-
+  
+  const cancelLogout = () => {
+    setShowConfirm(false);
+  };
+  const confirmLogout = () => {
+    handleLogout();
+    setShowConfirm(false);
+    navigate("/"); // ← вот это перенаправляет на главную
+  };
+  
   return (
     <div className="cabinetRlc">
     <div className="cabinet">
@@ -64,7 +45,7 @@ function Cabinet() {
           <Link to="/">Детская</Link>
       
 
-          <button onClick={handleLogout}> <Link to="/">Выход</Link></button>
+          <button onClick={handleConfirmLogout}>Выход</button>
        
 
         </div>
@@ -78,6 +59,18 @@ function Cabinet() {
       </div>
 
     </div>
+    {showConfirm && (
+  <div className="modal-overlay">
+    <div className="modal">
+      <p>Вы действительно хотите выйти?</p>
+      <div className="modal-buttons">
+        <button onClick={confirmLogout}>Да</button>
+        <button onClick={cancelLogout}>Нет</button>
+      </div>
+    </div>
+  </div>
+)}
+
     </div>
   );
 }

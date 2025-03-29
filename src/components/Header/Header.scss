@@ -1,116 +1,121 @@
-
-.headerRlc
-{
+.headerRlc {
   display: flex;
   justify-content: center;
-  background-color: rgb(12, 65, 57);
-  padding-top: 10px
+  background-color: #fdfdf6;
+  padding: 20px 0;
 }
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgb(36, 92, 84);
-  padding: 10px 20px;
-  border-radius: 50px;
   width: 1150px;
-  margin-left: -10px;
+  background-color: transparent;
+  font-family: "Georgia", serif;
 }
 
 .menu {
   display: flex;
-  gap: 20px;
+  gap: 40px;
 }
 
 .menu-item {
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
+  color: #073c36;
+  font-size: 18px;
+  font-weight: normal;
   cursor: pointer;
-  padding: 10px 5px;
-  transition: 0.3s;
-  display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-  &:hover{
-    background-color: #0b7b65;
-    border-radius: 18px;
-  }
-  &.active { // Сработает при переходе
-    background-color: #179f84;
-    border-radius: 18px;
-  }
-}
+  position: relative;
+  padding: 10px 0;
+  transition: color 0.3s;
 
+  a {
+    color: inherit;
+    text-decoration: none;
+    text-wrap: nowrap;
+  }
 
-.menu-item.home {
-  display: flex;
-  height: 44px;
+  &:hover {
+    color: #95c9b4; // Акцентный цвет при наведении
+  }
+
+  &.active {
+    color: #95c9b4;
+    font-weight: bold;
+  }
 }
 
 .icon {
-  color: white;
+  color: #073c36;
   font-size: 18px;
-  display: flex;
-  margin-top: 3px !important;
 }
-
-.login-button {
+.auth{
+  &:hover{
+    color: black;
+  }
+}
+.login-button,
+.logout-button {
+  font-family: "Georgia", serif;
+  background-color: transparent;
+  color: #073c36;
+  border: none;
+  font-size: 16px;
   display: flex;
   align-items: center;
-  gap: 5px;
-  background-color: white;
-  color: #0d8b74;
-  font-weight: bold;
-  border: none;
-  border-radius: 20px;
-  padding: 5px 15px;
+  gap: 6px;
   cursor: pointer;
+  transition: color 0.3s ease;
+
+  .icon {
+    font-size: 18px;
+    transition: color 0.3s ease;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+  }
+
+  &:hover {
+    color: #00995c;
+
+    .icon {
+      color: #00995c;
+    }
+
+    a {
+      color: #95c9b4;
+    }
+  }
 }
 
-.login-button .icon {
-  color: #0d8b74;
-}
-.logout{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
-  
-  font-weight: bold;
-  border: none;
-  border-radius: 20px;
-  padding: 5px 15px;
-  cursor: pointer;
-  button{
+
+.logout {
+  button {
+    background-color: transparent;
+    border: none;
+    color: #073c36;
+    font-size: 16px;
+    gap: 6px;
     display: flex;
-    gap: 8px;
-    color: #0d8b74;
-  }
-  .icon{
-    color: #0d8b74
+    align-items: center;
   }
 }
 
-/* Адаптивность */
 @media (max-width: 768px) {
   .header {
-      flex-direction: column;
-      padding: 10px;
-      border-radius: 20px;
+    flex-direction: column;
+    gap: 10px;
   }
+
   .menu {
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
   }
+
   .menu-item {
-      font-size: 14px;
-      padding: 5px;
-  }
-  .login-button {
-      margin-top: 10px;
+    font-size: 16px;
   }
 }

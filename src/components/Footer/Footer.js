@@ -54,29 +54,27 @@ const Footer = () => {
         <div className="footerRlc">
             <div className="horizontaLine"></div>
             <div className="footerOther">
+            
+                <div className="footer">
                 <div className="icons">
                     <img src={telegramIcon} alt="Telegram" />
                     <img src={VKIcon} alt="VK" />
                 </div>
-                <div className="footer">
-                    <div className="docs">
-                        <span onClick={() => setIsPrivacyModalOpen(true)} style={{ cursor: "pointer", textDecoration: "underline" }}>
-                            Политика конфиденциальности
-                        </span>
-                        <span onClick={() => setIsOfferModalOpen(true)} style={{ cursor: "pointer", textDecoration: "underline" }}>
-                        Договор публичной оферты
-                        </span>
-                    </div>
+                 
                     <div className="help">
                         <a href={support?.reference} target="_blank" rel="noopener noreferrer">
                             {support?.title}
                         </a>
                     </div>
-                    <div className="adress">
-                        <p>ИП Романова Ю. П.</p>
-                        <p>ОГРНИП: 321547800012830</p>
-                        <p>ИНН: 540864585360</p>
-                    </div>
+                    <div className="docs">
+                 
+                 <span onClick={() => setIsPrivacyModalOpen(true)} style={{ cursor: "pointer", textDecoration: "underline" }}>
+                     Политика конфиденциальности
+                 </span>
+                 <span onClick={() => setIsOfferModalOpen(true)} style={{ cursor: "pointer", textDecoration: "underline" }}>
+                 Договор публичной оферты
+                 </span>
+             </div>
                 </div>
             </div>
 

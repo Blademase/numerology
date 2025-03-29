@@ -4,10 +4,10 @@ import { createStore } from "redux";
 
 // Начальное состояние
 const initialState = {
-  isAuthenticated: !!localStorage.getItem("accessToken"), // Проверка наличия токена
+  isAuthenticated: !!localStorage.getItem("accessToken"),
 };
 
-// Экшены
+// Типы экшенов
 const LOGIN = "LOGIN";
 const LOGOUT = "LOGOUT";
 
@@ -23,11 +23,10 @@ const authReducer = (state = initialState, action) => {
   }
 };
 
-// Создание стора
-const store = createStore(authReducer);
-
-export default store;
-
-// Экшены для логина и логаута
+// Экшены
 export const loginAction = () => ({ type: LOGIN });
 export const logoutAction = () => ({ type: LOGOUT });
+
+// Создание хранилища
+const store = createStore(authReducer);
+export default store;

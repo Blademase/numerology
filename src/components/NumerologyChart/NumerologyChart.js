@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import cals from "../../assets/shema.png";
 import "./NumerologyChart.scss";
 
@@ -10,22 +9,22 @@ const NumerologyChart = ({ numbers = {},  }) => {
     <div className="numerlogyChart">
       <div className="shema">
         <img src={cals}  alt="Numerology Chart" />
-        <div className="top1 circle large outlined">{numbers?.b ?? 0}</div>
-        <div className="top2 circle medium outlined">{numbers.b1 ?? 0}</div>
-        <div className="top3 circle small outlined">{numbers.b2 ?? 0}</div>
-        <div className="top4 circle small outlined">{numbers.m ?? 0}</div>
+        <div className="top1 circle large ">{numbers?.b ?? 0}</div>
+        <div className="top2 circle medium ">{numbers.b1 ?? 0}</div>
+        <div className="top3 circle small ">{numbers.b2 ?? 0}</div>
+        <div className="top4 circle small ">{numbers.m ?? 0}</div>
 
         <div className="topRight1 circle large outlined">{numbers.g ?? 0}</div>
         <div className="topRight2 circle medium outlined">{numbers.g1 ?? 0}</div>
         <div className="topRight3 circle small outlined">{numbers.g2 ?? 0}</div>
 
-        <div className="right1 circle large outlined">{numbers.c ?? 0}</div>
+        <div className="right1 circle large ">{numbers.c ?? 0}</div>
         <div className="right2 circle medium outlined">{numbers.c1 ?? 0}</div>
-        <div className="right3 circle small outlined">{numbers.c2 ?? 0}</div>
+        <div className="right3 circle small ">{numbers.c2 ?? 0}</div>
         <div className="right4 circle mediumPlus outlined">{numbers.e2 ?? 0}</div>
         <div className="right5 circle medium outlined">{numbers.e1 ?? 0}</div>
 
-        <div className="center circle large outlined"> {numbers.e ?? 0} </div>
+        <div className="center circle large "> {numbers.e ?? 0} </div>
 
         <div className="bottomRight1 circle large outlined">{numbers.h ?? 0}</div>
         <div className="bottomRight2 circle medium outlined">{numbers.h1 ?? 0}</div>
@@ -34,18 +33,18 @@ const NumerologyChart = ({ numbers = {},  }) => {
         <div className="bottomRight5 circle small outlined">{numbers.k ?? 0}</div>
         <div className="bottomRight6 circle small outlined">{numbers.l ?? 0}</div>
 
-        <div className="bottom1 circle large outlined">{numbers.d ?? 0}</div>
+        <div className="bottom1 circle large ">{numbers.d ?? 0}</div>
         <div className="bottom2 circle medium outlined">{numbers.d1 ?? 0}</div>
-        <div className="bottom3 circle small outlined">{numbers.d2 ?? 0}</div>
+        <div className="bottom3 circle small ">{numbers.d2 ?? 0}</div>
 
         <div className="bottomLeft1 circle large outlined">{numbers.i ?? 0}</div>
         <div className="bottomLeft2 circle medium outlined">{numbers.i1 ?? 0}</div>
         <div className="bottomLeft3 circle small outlined">{numbers.i2 ?? 0}</div>
 
-        <div className="left1 circle large outlined">{numbers.a ?? 0}</div>
-        <div className="left2 circle medium outlined">{numbers.a1 ?? 0}</div>
-        <div className="left3 circle small outlined">{numbers.a2 ?? 0}</div>
-        <div className="left4 circle small outlined">{numbers.n ?? 0}</div>
+        <div className="left1 circle large ">{numbers.a ?? 0}</div>
+        <div className="left2 circle medium ">{numbers.a1 ?? 0}</div>
+        <div className="left3 circle small ">{numbers.a2 ?? 0}</div>
+        <div className="left4 circle small  ">{numbers.n ?? 0}</div>
 
         <div className="topLeft1 circle large outlined">{numbers.f ?? 0}</div>
         <div className="topLeft2 circle medium outlined">{numbers.f1 ?? 0}</div>

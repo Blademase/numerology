@@ -1,89 +1,71 @@
-.containerRlc{
+$primary-color: #073c36;
+$accent-color: #95c9b4;
+$bg-color: #ffffff;
+$page-bg: #fdfdf6;
+$font: 'Georgia', serif;
+$shadow: 0 0 10px rgba(7, 60, 54, 0.08);
+
+.containerRlc {
   display: flex;
   justify-content: center;
+  padding: 40px 20px;
+  background-color: $page-bg;
+  font-family: $font;
 }
+
 .container {
   display: grid;
-  grid-template-columns: repeat(3,1fr);
-  grid-column-gap: 107px;
-  grid-row-gap:10px;
-  margin-bottom: 30px;
-  }
-  
-  .card {
-    width: 320px;
-    position: relative;
-    min-height: 400px;
-    background: #ffffff;
-    border-radius: 16px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    border: 1px solid #ccc;
-    overflow: hidden;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  width: 100%;
+  max-width: 1150px;
+}
+
+.card {
+  background: $bg-color;
+  border-radius: 16px;
+  box-shadow: $shadow;
+  border: 1px solid #e2e2e2;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &-header {
+    background: $primary-color;
+    color: #fff;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: bold;
     text-align: center;
-  
-    &-header {
-      background: #027a48;
-      color: white;
-      padding: 12px;
-      font-size: 14px;
-      font-weight: bold;
-    }
-  
-    &-body {
-      padding: 24px;
-    }
-  
-    h2 {
-      color: #005bbb;
-      font-size: 18px;
-      font-weight: bold;
-    }
-  
-    .date {
-      color: #027a48;
-      font-size: 24px;
-      font-weight: bold;
-      margin-top: 8px;
-    }
-  
-    .features {
-      color: #555;
-      margin-top: 16px;
-      font-size: 14px;
-      list-style: none;
-      padding: 0;
-  
-      li {
-        margin-bottom: 8px;
-      }
-    }
-  
-    .price {
-      color: #027a48;
-      font-size: 20px;
-      font-weight: bold;
-      margin-top: 16px;
-    }
-  
-    .buy-button {
-        position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%;
-      background: #005bbb;
-      color: white;
-      padding: 12px;
-      font-size: 16px;
-      font-weight: bold;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.3s;
-  
-      &:hover {
-        background: #004b99;
-      }
+  }
+
+  &-body {
+    padding: 24px;
+    font-size: 15px;
+    color: $primary-color;
+
+    p {
+      margin-bottom: 16px;
+      line-height: 1.6;
     }
   }
-  
+
+  .buy-button {
+    margin-top: 20px;
+    background-color: $primary-color;
+    color: #fff;
+    font-size: 15px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    align-self: center;
+    width: 80%;
+
+    &:hover {
+      background-color: darken($primary-color, 5%);
+    }
+  }
+}

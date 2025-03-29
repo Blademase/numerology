@@ -1,28 +1,32 @@
 import React, { useState, useEffect } from "react";
 import { FaSignInAlt, FaUser } from "react-icons/fa";
 import { Link, useLocation } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux"; // Импортируем useDispatch и useSelector из Redux
-import { loginAction, logoutAction } from "../../store/store"; // Экшены для авторизации
+import { useDispatch, useSelector } from "react-redux";
+import { loginAction, logoutAction } from "../../store/store";
 import "./Header.scss";
 import SignIn from "../SignIn/SignIn";
 
 const Header = () => {
   const location = useLocation();
-  const dispatch = useDispatch(); // Диспатчим экшены
-  const isAuthenticated = useSelector((state) => state.isAuthenticated); // Селектор для авторизации из Redux
+  const dispatch = useDispatch();
+  const isAuthenticated = useSelector((state) => state.isAuthenticated);
   const [activeItem, setActiveItem] = useState(location.pathname);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
     if (accessToken) {
-      dispatch(loginAction()); // Диспатчим логин, если токен есть
+      dispatch(loginAction());
     } else {
-      dispatch(logoutAction()); // Если токен отсутствует, диспатчим лог-аут
+      dispatch(logoutAction());
     }
-  }, [dispatch]); // Этот useEffect теперь будет запускаться каждый раз при изменении dispatch
+  }, [dispatch]);
 
-
+  // Обработка события успешного логина из модалки
+  const handleSuccessfulLogin = () => {
+    dispatch(loginAction());     // Обновляем Redux
+    setIsModalOpen(false);       // Закрываем окно
+  };
 
   return (
     <div className="headerRlc">
@@ -43,15 +47,13 @@ const Header = () => {
           <div className={`menu-item ${activeItem === "/prognoses" ? "active" : ""}`}>
             <Link to="/prognoses" onClick={() => setActiveItem("/prognoses")}>ПРОГНОЗ 2025</Link>
           </div>
-          <div className={`menu-item ${activeItem === "/additional" ? "active" : ""}`}>
-            <Link to="/additional" onClick={() => setActiveItem("/additional")}>ДОП РАСЧЕТЫ</Link>
-          </div>
         </div>
-
+      <div className="auth">
         {isAuthenticated ? (
           <div className="logout">
             <button className="logout-button">
-              <FaUser className="icon" /> <div><Link to="/cabinet">Личный кабинет</Link></div>
+              <FaUser className="icon" />
+              <div><Link to="/cabinet">Личный кабинет</Link></div>
             </button>
           </div>
         ) : (
@@ -59,13 +61,13 @@ const Header = () => {
             <FaSignInAlt className="icon" /> ВОЙТИ
           </button>
         )}
+        </div>
       </nav>
 
-      <SignIn 
-        isOpen={isModalOpen} 
-        onClose={() => {
-          setIsModalOpen(false);
-        }} 
+      <SignIn
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSuccess={handleSuccessfulLogin} // <- передаём колбэк при успехе
       />
     </div>
   );
