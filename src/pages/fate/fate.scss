@@ -133,11 +133,28 @@ $shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
    
 }
-@media (max-width: 1060px) {
+@media (max-width: 1024px) {
     .dateDecodingCard{
         grid-template-columns: repeat(1,1fr) !important;
     }
    
 }
-
+@media (max-width: 590px) {
+    .FateRlc{
+        .FateFirstColumn{
+            align-items: center;
+        }
+    .birthdate-container {
+     width: 340px !important;
+     gap: 5px !important;
+     .select-container{
+        justify-content: center !important;
+     }
+        .bd-text{
+            text-wrap: nowrap !important;
+        }   
+    }
+    
+    }
+    }
 

@@ -108,3 +108,9 @@
     background-color: #0b7b65;
   }
 }
+
+@media (max-width: 1030px) {
+ .cabinet{
+  grid-template-columns: repeat(1,1fr);
+ }
+}

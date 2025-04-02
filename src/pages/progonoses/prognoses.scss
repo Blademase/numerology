@@ -87,3 +87,8 @@ $shadow: 0 0 10px rgba(7, 60, 54, 0.08);
     margin-top: 40px;
   }
 }
+@media (max-width: 590px) {
+  .prognoses .birthdate-container .bd-text{
+    text-wrap: nowrap;
+  }
+}

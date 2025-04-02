@@ -16,7 +16,7 @@ import Question from "./pages/additional/question/qustion";
 import { Provider } from "react-redux";
 import store from "./store/store";
 import "./App.css";
-
+import './i18n'
 function App() {
   return (
     <div className="App">

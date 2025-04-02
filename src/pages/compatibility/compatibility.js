@@ -25,6 +25,8 @@ import {
   getChildSelf,
   getTasksFromPast
 } from "../../services/compability/compability.js";
+import api from "../../services/axiosInstance.js"; 
+
 function Compatibility() {
   const [numerologyData, setNumerologyData] = useState({});
   const [combinedData, setCombinedData] = useState({});
@@ -94,7 +96,7 @@ const [numerologyData2, setNumerologyData2] = useState({});
 
     try {
         const [compatibilityResponse, matrixResponse1, matrixResponse2] = await Promise.all([
-            axios.post(`https://matrixaaa.duckdns.org/compatibility/calculate-compatibility/`, {
+            api.post(`https://matrixaaa.duckdns.org/compatibility/calculate-compatibility/`, {
                 day,
                 month: month.value,
                 year,
@@ -102,15 +104,16 @@ const [numerologyData2, setNumerologyData2] = useState({});
                 month2: month1.value,
                 year2: year1,
             }),
-            axios.post(`https://matrixaaa.duckdns.org/compatibility/calculate-matrix/`, {
+            api.post(`https://matrixaaa.duckdns.org/compatibility/calculate-matrix/`, {
                 day,
                 month: month.value,
                 year,
             }),
-            axios.post(`https://matrixaaa.duckdns.org/compatibility/calculate-matrix/`, {
+            api.post(`https://matrixaaa.duckdns.org/compatibility/calculate-matrix/`, {
                 day: day1,
                 month: month1.value,
                 year: year1,
+                 category:"compatibility"
             })
         ]);
 

@@ -6,10 +6,7 @@
 }
 
 .chakraTable {
-  background: white;
-  padding: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 18px;
+
   .chakra-title {
     font-size: 18px;
     font-weight: bold;
@@ -33,7 +30,7 @@
     padding: 6px;
     background: white;
     border: none;
-    white-space: nowrap; // 🔹 Запрещает перенос строк
+    white-space: nowrap; 
     overflow: hidden;
     text-overflow: ellipsis;
   }
@@ -50,7 +47,7 @@
     font-weight: bold;
     color: black;
     td{
-      background-color: aliceblue;
+      background-color: #f0f8ff;
     }
   }
 }
@@ -147,5 +144,29 @@
         }
     }
 
+  }
+  .chakraTable {
+    background: white;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 18px;
+    overflow-x: auto;
+  
+    @media (max-width: 590px) {
+       width: 360px;
+      .infoTable {
+        display: flex;
+        justify-content: center;
+      }
+      table {
+        width: 340px; // Заставит появиться горизонтальный скролл
+      }
+    }
+  }
+  @media (max-width: 590px) {
+    .infoTable{
+      width: 100%;
+      align-items: center;
+    }
   }
   
