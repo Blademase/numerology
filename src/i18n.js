@@ -5,6 +5,91 @@ import LanguageDetector from "i18next-browser-languagedetector";
 const resources = {
   ru: {
     translation: {
+      infoTable: {
+        title: "Персональный расчет",
+        subtitle: "Карта здоровья",
+        chakraName: "НАЗВАНИЕ ЧАКРЫ",
+        body: "ФИЗИКА",
+        energy: "ЭНЕРГИЯ",
+        emotion: "ЭМОЦИИ",
+        total: "ИТОГО"
+      },
+      financePage: {
+        enterBirthDate: "Введите дату рождения",
+        day: "Число",
+        month: "Месяц",
+        year: "Год",
+        calculate: "Рассчитать",
+        commatrix:"Матрица совместимости",
+        btn:"Рассчитать совместимость"
+      },      
+      sky: "Небо",        // ru
+earth: "Земля",
+spiritualHarmony: "Духовная гармония",
+planetary: "Планетарное",
+financeAccordion: {
+  qualities: {
+    title: "Личные качества",
+    description: "Описание личных качеств"
+  },
+  soulWork: {
+    title: "Кем работать для души",
+    description: "Описание работы для души"
+  },
+  karma: {
+    title: "Карма и задача 40 лет",
+    description: "Описание кармы и задачи"
+  },
+  pastLife: {
+    title: "Задачи из прошлых жизней",
+    description: "Описание задач из прошлых жизней"
+  },
+  comfortPoint: {
+    title: "Точка комфорта",
+    description: "Описание точки комфорта"
+  },
+  selfRealization: {
+    title: "Самореализация",
+    description: "Описание самореализации"
+  },
+  pointPersonalPower: {
+    title: "Точка личной силы",
+    description: "Описание точки личной силы"
+  },
+  genericPower: {
+    title: "Сила рода",
+    description: "Описание силы рода"
+  },
+  parentChildKarma: {
+    title: "Детско-родительская карма",
+    description: "Описание детско-родительской кармы"
+  },
+  spiritualKarma: {
+    title: "Духовная карма",
+    description: "Описание духовной кармы"
+  },
+  matrixRelationship: {
+    title: "Отношения в матрице",
+    description: "Описание отношений в матрице"
+  },
+  matrixMoney: {
+    title: "Деньги в матрице",
+    description: "Описание денег в матрице"
+  },
+  soulMission: {
+    title: "Миссия души",
+    description: "Описание миссии души"
+  },
+  diseasePredisposition: {
+    title: "Предрасположенность к заболеваниям",
+    description: "Описание предрасположенности к заболеваниям"
+  },
+  healthMap: {
+    title: "Карта здоровья",
+    description: "Описание карты здоровья"
+  }
+}
+,
       // Header + UI
       matrix: "Матрица судьбы",
       finance: "Финансы",
@@ -131,7 +216,31 @@ const resources = {
   },
 
   fi: {
+    
     translation: {
+      infoTable: {
+        title: "Henkilökohtainen laskenta",
+        subtitle: "Terveyskartta",
+        chakraName: "CHAKRAN NIMI",
+        body: "FYYSINEN",
+        energy: "ENERGIA",
+        emotion: "TUNTEET",
+        total: "YHTEENSÄ"
+      },
+      financePage: {
+        enterBirthDate: "Syötä syntymäaika",
+        day: "Päivä",
+        month: "Kuukausi",
+        year: "Vuosi",
+        calculate: "Laske",
+        commatrix: "Yhteensopivuusmatriisi",
+        btn: "Laske yhteensopivuus"
+        
+      },      
+      sky: "Taivas",
+      earth: "Maa",
+      spiritualHarmony: "Henkinen harmonia",
+      planetary: "Planetaarinen",
       matrix: "Kohtalon matriisi",
       finance: "Talous",
       compatibility: "Yhteensopivuus",
@@ -141,7 +250,68 @@ const resources = {
       cabinet: "Oma tili",
       unlock: "Avaa",
       noDescription: "Ei kuvausta",
-
+      financeAccordion: {
+        qualities: {
+          title: "Henkilökohtaiset ominaisuudet",
+          description: "Henkilökohtaisten ominaisuuksien kuvaus"
+        },
+        soulWork: {
+          title: "Sielun työ",
+          description: "Kuvaus työstä sielulle"
+        },
+        karma: {
+          title: "Karma ja tehtävä 40-vuotiaana",
+          description: "Karman ja tehtävän kuvaus"
+        },
+        pastLife: {
+          title: "Tehtävät menneistä elämistä",
+          description: "Menneiden elämien tehtävien kuvaus"
+        },
+        comfortPoint: {
+          title: "Mukavuuspiste",
+          description: "Mukavuuspisteen kuvaus"
+        },
+        selfRealization: {
+          title: "Itsensä toteuttaminen",
+          description: "Itsensä toteuttamisen kuvaus"
+        },
+        pointPersonalPower: {
+          title: "Henkilökohtainen voimapiste",
+          description: "Henkilökohtaisen voimapisteen kuvaus"
+        },
+        genericPower: {
+          title: "Suvun voima",
+          description: "Suvun voiman kuvaus"
+        },
+        parentChildKarma: {
+          title: "Lapsi–vanhempi-karma",
+          description: "Lapsi–vanhempi-karman kuvaus"
+        },
+        spiritualKarma: {
+          title: "Henkinen karma",
+          description: "Henkisen karman kuvaus"
+        },
+        matrixRelationship: {
+          title: "Suhteet matriisissa",
+          description: "Suhteiden kuvaus matriisissa"
+        },
+        matrixMoney: {
+          title: "Raha matriisissa",
+          description: "Rahan kuvaus matriisissa"
+        },
+        soulMission: {
+          title: "Sielun tehtävä",
+          description: "Sielun tehtävän kuvaus"
+        },
+        diseasePredisposition: {
+          title: "Alttius sairauksille",
+          description: "Alttiuden kuvaus sairauksille"
+        },
+        healthMap: {
+          title: "Terveyskartta",
+          description: "Terveyskartan kuvaus"
+        }
+      },      
       chakra_7: "7. Sahasrara",
       chakra_6: "6. Ajna",
       chakra_5: "5. Vishuddha",

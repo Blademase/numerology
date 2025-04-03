@@ -1,31 +1,36 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
+
 import NumerologyChart from "../../components/NumerologyChart/NumerologyChart";
 import InfoTable from "../../components/InfoTable/InfoTable";
 import Accordions from "../../components/Accordions/Accordions";
-import TrainingCard  from "../../components/TrainingCard/TrainingCard"
-import { 
-  newChakraData, 
-  accordionConfig, 
-  newPersonalInfo, 
-  months, 
+import TrainingCard from "../../components/TrainingCard/TrainingCard";
+import DateDecodingCard from "../../components/DateDecodingCard/DateDecodingCard";
+
+import {
+  newChakraData,
+  accordionConfig,
+  newPersonalInfo,
+  months,
   years,
   defaultAccordionData
 } from "./constants";
-import { 
-  calculateNumerology, 
+
+import {
+  calculateNumerology,
   getBlocksMoney,
   getDestinationSociety,
   getFincanceOpportunity,
   getKarmaTask,
   getTalents,
   getWhatGivesMoney
-
- 
 } from "../../services/financeService/financeService.js";
+
 import "./finance.scss";
-import DateDecodingCard from "../../components/DateDecodingCard/DateDecodingCard.js"
+
 function Finance() {
+  const { t } = useTranslation();
   const [numerologyData, setNumerologyData] = useState({});
   const [combinedData, setCombinedData] = useState({});
   const [year, setYear] = useState(2025);
@@ -50,19 +55,13 @@ function Finance() {
   const handleMonthChange = (e) => {
     const selectedMonth = months.find(m => m.name === e.target.value);
     setMonth(selectedMonth);
-
-    if (day > getDaysInMonth(selectedMonth, year)) {
-      setDay(1);
-    }
+    if (day > getDaysInMonth(selectedMonth, year)) setDay(1);
   };
 
   const handleYearChange = (e) => {
     const selectedYear = Number(e.target.value);
     setYear(selectedYear);
-
-    if (month.name === "Февраль" && day > getDaysInMonth(month, selectedYear)) {
-      setDay(1);
-    }
+    if (month.name === "Февраль" && day > getDaysInMonth(month, selectedYear)) setDay(1);
   };
 
   const handleCalculate = async () => {
@@ -76,19 +75,19 @@ function Finance() {
       updateCombinedData({ blocksMoney: blocksMoneyResponse });
 
       const destinationSocietyResponse = await getDestinationSociety(numerologyResponse);
-      updateCombinedData({destinationSociety:destinationSocietyResponse});
-  
-      const financeOpportunityResponse= await getFincanceOpportunity(numerologyResponse);
-      updateCombinedData({financeOpportunity:financeOpportunityResponse})
+      updateCombinedData({ destinationSociety: destinationSocietyResponse });
+
+      const financeOpportunityResponse = await getFincanceOpportunity(numerologyResponse);
+      updateCombinedData({ financeOpportunity: financeOpportunityResponse });
 
       const karmaTaskResponse = await getKarmaTask(numerologyResponse);
-      updateCombinedData({ karmaTask:karmaTaskResponse})
-      
+      updateCombinedData({ karmaTask: karmaTaskResponse });
+
       const talentsResponse = await getTalents(numerologyResponse);
-      updateCombinedData({talents:talentsResponse})
+      updateCombinedData({ talents: talentsResponse });
 
       const whatGivesMoneyResponse = await getWhatGivesMoney(numerologyResponse);
-      updateCombinedData({whatGivesMoney:whatGivesMoneyResponse})
+      updateCombinedData({ whatGivesMoney: whatGivesMoneyResponse });
     } catch (error) {
       console.error("Ошибка при выполнении расчёта:", error.message);
     }
@@ -99,10 +98,10 @@ function Finance() {
       <div className="Fate">
         <div className="FateFirstColumn">
           <div className="birthdate-container">
-            <span className="bd-text">Введите дату рождения</span>
+            <span className="bd-text">{t("financePage.enterBirthDate")}</span>
 
             <div className="select-container">
-              <label className="select-label">Число</label>
+              <label className="select-label">{t("financePage.day")}</label>
               <select className="custom-select" value={day} onChange={(e) => setDay(Number(e.target.value))}>
                 {Array.from({ length: getDaysInMonth(month, year) }, (_, i) => i + 1).map((d) => (
                   <option key={d} value={d}>{d}</option>
@@ -111,16 +110,16 @@ function Finance() {
             </div>
 
             <div className="select-container">
-              <label className="select-label">Месяц</label>
+              <label className="select-label">{t("financePage.month")}</label>
               <select className="custom-select" value={month.name} onChange={handleMonthChange}>
                 {months.map((m) => (
-                  <option key={m.name} value={m.name}>{m.name}</option>
+                  <option key={m.name} value={m.name}>{t(`months.${m.value}`)}</option>
                 ))}
               </select>
             </div>
 
             <div className="select-container">
-              <label className="select-label">Год</label>
+              <label className="select-label">{t("financePage.year")}</label>
               <select className="custom-select" value={year} onChange={handleYearChange}>
                 {years.map((y) => (
                   <option key={y} value={y}>{y}</option>
@@ -128,25 +127,25 @@ function Finance() {
               </select>
             </div>
 
-            <button onClick={handleCalculate}>Рассчитать</button>
+            <button onClick={handleCalculate}>{t("financePage.calculate")}</button>
           </div>
 
           <NumerologyChart numbers={numerologyData} onCalculate={handleCalculate} />
         </div>
 
-        <InfoTable chakraData={newChakraData} numbers={numerologyData} personalInfo={newPersonalInfo} showChakraTable={false} />
-    
+        <InfoTable
+          chakraData={newChakraData}
+          numbers={numerologyData}
+          personalInfo={newPersonalInfo}
+          showChakraTable={false}
+        />
       </div>
+
       <div className="accordions">
-      <Accordions 
-    data={combinedData} 
-    defaultAccordionData={defaultAccordionData}
-/></div>
-  
-  <DateDecodingCard />
+        <Accordions data={combinedData} defaultAccordionData={defaultAccordionData} />
+      </div>
 
-
-     
+      <DateDecodingCard />
     </div>
   );
 }

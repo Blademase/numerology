@@ -12,8 +12,9 @@ import {
   import Accordions from "../../components/Accordions/Accordions.js";
   import './prognoses.scss'
   import axios from "axios";
-  
+  import { useTranslation } from "react-i18next";
 function Prognoses() {
+    const { t } = useTranslation();
     const [numerologyData, setNumerologyData] = useState({});
       const [combinedData, setCombinedData] = useState({});
       const [year, setYear] = useState(2025);
@@ -92,11 +93,11 @@ function Prognoses() {
       
   return (
     <div className="prognoses">
-       <div className="birthdate-container">
-                   <span className="bd-text">Введите дату рождения</span>
+             <div className="birthdate-container">
+                   <span className="bd-text">{t("financePage.enterBirthDate")}</span>
        
                    <div className="select-container">
-                     <label className="select-label">Число</label>
+                     <label className="select-label">{t("financePage.day")}</label>
                      <select className="custom-select" value={day} onChange={(e) => setDay(Number(e.target.value))}>
                        {Array.from({ length: getDaysInMonth(month, year) }, (_, i) => i + 1).map((d) => (
                          <option key={d} value={d}>{d}</option>
@@ -105,16 +106,16 @@ function Prognoses() {
                    </div>
        
                    <div className="select-container">
-                     <label className="select-label">Месяц</label>
+                     <label className="select-label">{t("financePage.month")}</label>
                      <select className="custom-select" value={month.name} onChange={handleMonthChange}>
                        {months.map((m) => (
-                         <option key={m.name} value={m.name}>{m.name}</option>
+                         <option key={m.name} value={m.name}>{t(`months.${m.value}`)}</option>
                        ))}
                      </select>
                    </div>
        
                    <div className="select-container">
-                     <label className="select-label">Год</label>
+                     <label className="select-label">{t("financePage.year")}</label>
                      <select className="custom-select" value={year} onChange={handleYearChange}>
                        {years.map((y) => (
                          <option key={y} value={y}>{y}</option>
@@ -122,7 +123,7 @@ function Prognoses() {
                      </select>
                    </div>
        
-                   <button onClick={handleCalculate}>Рассчитать</button>
+                   <button onClick={handleCalculate}>{t("financePage.calculate")}</button>
                  </div>
                  <div className="accordions">
       <Accordions 

@@ -21,30 +21,31 @@ export const newChakraData = [
   
   export const newPersonalInfo = [
     {
-      title: "Поиск себя:",
-      description: "Соединение мужского и женского. Выстраивание взаимоотношений. Способности, навыки, умения.",
-      skyLabel: "Небо",
+      title: "searchSelf",
+      description: "searchSelfDesc",
+      skyLabel: "sky",
       skyKey: "r",
-      earthLabel: "Земля",
+      earthLabel: "earth",
       earthKey: "u",
       resultKey: "y",
-      spiritLabel: "Духовная гармония",
+      spiritLabel: "spiritualHarmony",
       spiritKey: "w",
-      question: "Духовный зачет. Кто я для бога? Где божественное во мне?"
+      question: "spiritualQuestion1"
     },
     {
-      title: "Социализация:",
-      description: "Социальная и родовая системы. Результаты и признание в социуме.",
+      title: "socialization",
+      description: "socializationDesc",
       skyLabel: "M",
       skyKey: "t",
       earthLabel: "Ж",
       earthKey: "",
       resultKey: "v",
-      spiritLabel: "Планетарное",
+      spiritLabel: "planetary",
       spiritKey: "x",
-      question: "Планетарное предназначение человека"
+      question: "spiritualQuestion2"
     }
   ];
+  
   
   export const months = [
     { name: "Январь", value: 1, days: 31 },
