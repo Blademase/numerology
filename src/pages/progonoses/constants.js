@@ -63,19 +63,20 @@ export const newChakraData = [
   
   export const years = Array.from({ length: 100 }, (_, i) => 2025 - i);
   export const defaultAccordionData = [
-    { key: 'Общий прогноз', title: 'Общий прогноз', is_paid: true },
-    { key: 'Январь', title: 'Январь',  is_paid: true },
-    { key: 'Февраль', title: 'Февраль',  is_paid: true },
-    { key: 'Март', title: 'Март',  is_paid: true },
-    { key: 'Апрель', title: 'Апрель', is_paid: true },
-    { key: 'Май', title: 'Май',  is_paid: true },
-    { key: 'Июнь', title: 'Июнь', is_paid: true },
-    { key: 'Июль', title: 'Июль',  is_paid: true },
-    { key: 'Август', title: 'Август',  is_paid: true },
-    { key: 'Сентябрь', title: 'Сентябрь',  is_paid: true },
-    { key: 'Октябрь', title: 'Октябрь',  is_paid: true },
-    { key: 'Ноябрь', title: 'Ноябрь', is_paid: true },
-    { key: 'Декабрь', title: 'Декабрь',  is_paid: true },
-    
-  ];
+    { key: 'Общий прогноз', title: 'financeAccordion.total', is_paid: true },
+    { key: 'Январь', title: 'financeAccordion.january',  is_paid: true },
+    { key: 'Февраль', title: 'financeAccordion.feb',  is_paid: true },
+    { key: 'Март', title: 'financeAccordion.march',  is_paid: true },
+    { key: 'Апрель', title: 'financeAccordion.april', is_paid: true },
+    { key: 'Май', title: 'financeAccordion.may',  is_paid: true },
+    { key: 'Июнь', title: 'financeAccordion.june', is_paid: true },
+    { key: 'Июль', title: 'financeAccordion.july',  is_paid: true },
+    { key: 'Август', title: 'financeAccordion.august',  is_paid: true },
+    { key: 'Сентябрь', title: 'financeAccordion.sep',  is_paid: true },
+    { key: 'Октябрь', title: 'financeAccordion.okt',  is_paid: true },
+    { key: 'Ноябрь', title: 'financeAccordion.nov', is_paid: true },
+    { key: 'Декабрь', title: 'financeAccordion.dec',  is_paid: true },
+
+
+];
   

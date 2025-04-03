@@ -1,49 +1,47 @@
 import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import "./Footer.scss";
 import telegramIcon from "../../assets/telegram.png";
 import VKIcon from "../../assets/VKLogo.png";
 import axios from "axios";
 
 const Footer = () => {
+    const { t } = useTranslation();
     const BASE_URL = "https://matrixaaa.duckdns.org";
+
     const [support, setSupport] = useState({});
     const [privacyText, setPrivacyText] = useState({});
     const [offerText, setOfferText] = useState({});
+    const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
+    const [isOfferModalOpen, setIsOfferModalOpen] = useState(false);
 
-    const [isprivacyModalOpen, setIsPrivacyModalOpen] = useState(false); 
-    const [isOfferModalOpen, setIsOfferModalOpen] = useState(false); 
-
-    // Функция для запроса данных поддержки
     const getSupport = async () => {
         try {
             const response = await axios.get(`${BASE_URL}/other/message-support/1/`);
             setSupport(response.data);
         } catch (error) {
-            console.log("Ошибка при получении данных:", error);
+            console.log("Error fetching support data:", error);
         }
     };
 
-    // Функция для запроса политики конфиденциальности
     const getPrivacy = async () => {
         try {
             const response = await axios.get(`${BASE_URL}/other/privacy-policy/1/`);
             setPrivacyText(response.data);
         } catch (error) {
-            console.log("Ошибка при получении данных:", error);
+            console.log("Error fetching privacy policy:", error);
         }
     };
 
- const getOffer = async () => {
+    const getOffer = async () => {
         try {
             const response = await axios.get(`${BASE_URL}/other/public-offer-agreement/1/`);
             setOfferText(response.data);
-            console.log(response.data);
-            
         } catch (error) {
-            console.log("Ошибка при получении данных:", error);
+            console.log("Error fetching public offer:", error);
         }
     };
-    
+
     useEffect(() => {
         getSupport();
         getPrivacy();
@@ -54,32 +52,36 @@ const Footer = () => {
         <div className="footerRlc">
             <div className="horizontaLine"></div>
             <div className="footerOther">
-            
                 <div className="footer">
-                <div className="icons">
-                    <img src={telegramIcon} alt="Telegram" />
-                    <img src={VKIcon} alt="VK" />
-                </div>
-                 
+                    <div className="icons">
+                        <img src={telegramIcon} alt="Telegram" />
+                        <img src={VKIcon} alt="VK" />
+                    </div>
+
                     <div className="help">
                         <a href={support?.reference} target="_blank" rel="noopener noreferrer">
                             {support?.title}
                         </a>
                     </div>
+
                     <div className="docs">
-                 
-                 <span onClick={() => setIsPrivacyModalOpen(true)} style={{ cursor: "pointer", textDecoration: "underline" }}>
-                     Политика конфиденциальности
-                 </span>
-                 <span onClick={() => setIsOfferModalOpen(true)} style={{ cursor: "pointer", textDecoration: "underline" }}>
-                 Договор публичной оферты
-                 </span>
-             </div>
+            <span
+                onClick={() => setIsPrivacyModalOpen(true)}
+                style={{ cursor: "pointer", textDecoration: "underline" }}
+            >
+              {t("footer.privacyPolicy")}
+            </span>
+                        <span
+                            onClick={() => setIsOfferModalOpen(true)}
+                            style={{ cursor: "pointer", textDecoration: "underline" }}
+                        >
+              {t("footer.publicOffer")}
+            </span>
+                    </div>
                 </div>
             </div>
 
-            {/* Модальное окно */}
-            {isprivacyModalOpen && (
+            {isPrivacyModalOpen && (
                 <div className="modal">
                     <div className="modal-content">
                         <span className="close" onClick={() => setIsPrivacyModalOpen(false)}>&times;</span>
@@ -89,7 +91,7 @@ const Footer = () => {
                 </div>
             )}
 
-              {isOfferModalOpen && (
+            {isOfferModalOpen && (
                 <div className="modal">
                     <div className="modal-content">
                         <span className="close" onClick={() => setIsOfferModalOpen(false)}>&times;</span>

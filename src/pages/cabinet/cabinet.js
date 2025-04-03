@@ -1,77 +1,69 @@
-import React, { useEffect,useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate, Link, Outlet } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logoutAction } from "../../store/store";
+import { useTranslation } from "react-i18next"; // 👈 импорт
 
-import { Link, Outlet } from "react-router-dom";  // Используем Outlet для отображения контента
-import { useDispatch, useSelector } from "react-redux"; // Импортируем хуки для работы с Redux
-import { loginAction, logoutAction } from "../../store/store"; // Экшены для авторизации
 import "./cabinet.scss";
 
 function Cabinet() {
   const dispatch = useDispatch();
-  const isAuthenticated = useSelector((state) => state.isAuthenticated);
-  const [showConfirm, setShowConfirm] = useState(false);
   const navigate = useNavigate();
+  const [showConfirm, setShowConfirm] = useState(false);
+  const { t } = useTranslation(); // 👈 подключаем i18n
 
   const handleLogout = () => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("refreshToken");
     dispatch(logoutAction());
   };
-  
+
   const handleConfirmLogout = () => {
     setShowConfirm(true);
   };
-  
+
   const cancelLogout = () => {
     setShowConfirm(false);
   };
+
   const confirmLogout = () => {
     handleLogout();
     setShowConfirm(false);
-    navigate("/"); // ← вот это перенаправляет на главную
+    navigate("/");
   };
-  
+
   return (
-    <div className="cabinetRlc">
-    <div className="cabinet">
-    
-        <div className="links">
-          <Link to="/cabinet/mymatrices">Мои Матрицы</Link>
-          <Link to="/cabinet/tariffs">Тарифы</Link>
-          <Link to="/cabinet/viewhistory">История просмотров</Link>
-          <Link to="/">Матрица судьбы</Link>
-          <Link to="/">Финансы</Link>
-          <Link to="/">Совместимость</Link>
-          <Link to="/">Детская</Link>
-      
+      <div className="cabinetRlc">
+        <div className="cabinet">
+          <div className="links">
+            <Link to="/cabinet/mymatrices">{t("cabinetF.myMatrices")}</Link>
+            <Link to="/cabinet/tariffs">{t("cabinetF.tariffs")}</Link>
+            <Link to="/cabinet/viewhistory">{t("cabinetF.history")}</Link>
+            <Link to="/">{t("matrix")}</Link>
+            <Link to="/">{t("finance")}</Link>
+            <Link to="/">{t("compatibility")}</Link>
+            <Link to="/">{t("child")}</Link>
 
-          <button onClick={handleConfirmLogout}>Выход</button>
-       
+            <button onClick={handleConfirmLogout}>{t("cabinetF.logout")}</button>
+          </div>
 
+          <div className="content">
+            <Outlet />
+          </div>
         </div>
 
-       
-       
-   
-      <div className="content">
-        {/* Здесь контент меняется динамически в зависимости от маршрута */}
-        <Outlet />
+        {showConfirm && (
+            <div className="modal-overlay">
+              <div className="modal">
+                <p>{t("cabinet.logoutConfirm")}</p>
+                <div className="modal-buttons">
+                  <button onClick={confirmLogout}>{t("yes")}</button>
+                  <button onClick={cancelLogout}>{t("no")}</button>
+                </div>
+              </div>
+            </div>
+        )}
       </div>
-
-    </div>
-    {showConfirm && (
-  <div className="modal-overlay">
-    <div className="modal">
-      <p>Вы действительно хотите выйти?</p>
-      <div className="modal-buttons">
-        <button onClick={confirmLogout}>Да</button>
-        <button onClick={cancelLogout}>Нет</button>
-      </div>
-    </div>
-  </div>
-)}
-
-    </div>
   );
 }
 

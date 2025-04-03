@@ -18,33 +18,34 @@ export const newChakraData = [
     { title: "Точка личной силы", key: "personalPower", locked: true },
     { title: "Сила рода", key: "ancestralStrength", locked: true }
   ];
+
+export const newPersonalInfo = [
+  {
+    title: "searchSelf",
+    description: "searchSelfDesc",
+    skyLabel: "sky",
+    skyKey: "r",
+    earthLabel: "earth",
+    earthKey: "s",
+    resultKey: "y",
+    spiritLabel: "spiritualHarmony",
+    spiritKey: "w",
+    question: "spiritualQuestion1"
+  },
+  {
+    title: "socialization",
+    description: "socializationDesc",
+    skyLabel: "sky",
+    skyKey: "t",
+    earthLabel: "earth",
+    earthKey: "u",
+    resultKey: "v",
+    spiritLabel: "planetary",
+    spiritKey: "x",
+    question: "spiritualQuestion2"
+  }
+];
   
-  export const newPersonalInfo = [
-    {
-      title: "Поиск себя:",
-      description: "Соединение мужского и женского. Выстраивание взаимоотношений. Способности, навыки, умения.",
-      skyLabel: "Небо",
-      skyKey: "r",
-      earthLabel: "Земля",
-      earthKey: "u",
-      resultKey: "y",
-      spiritLabel: "Духовная гармония",
-      spiritKey: "w",
-      question: "Духовный зачет. Кто я для бога? Где божественное во мне?"
-    },
-    {
-      title: "Социализация:",
-      description: "Социальная и родовая системы. Результаты и признание в социуме.",
-      skyLabel: "M",
-      skyKey: "t",
-      earthLabel: "Ж",
-      earthKey: "",
-      resultKey: "v",
-      spiritLabel: "Планетарное",
-      spiritKey: "x",
-      question: "Планетарное предназначение человека"
-    }
-  ];
   
   export const months = [
     { name: "Январь", value: 1, days: 31 },

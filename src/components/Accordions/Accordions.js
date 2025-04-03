@@ -6,11 +6,13 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import LockIcon from '@mui/icons-material/Lock';
+import { useTranslation } from 'react-i18next';
 import './Accordions.scss';
 
 const Accordions = ({ data, defaultAccordionData }) => {
   const [expanded, setExpanded] = useState(null);
   const [accordionData, setAccordionData] = useState(defaultAccordionData);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (Object.keys(data).length > 0) {
@@ -55,14 +57,14 @@ const Accordions = ({ data, defaultAccordionData }) => {
 
     return (
       <div className="talent-block" key={talent.title}>
-        <Typography variant="subtitle1">{talent.title}</Typography>
+        <Typography variant="subtitle1">{t(talent.title)}</Typography>
         {talent.description?.includes('<') ? (
           <Typography
             variant="body2"
-            dangerouslySetInnerHTML={{ __html: talent.description }}
+            dangerouslySetInnerHTML={{ __html: t(talent.description) }}
           />
         ) : (
-          <Typography variant="body2">{talent.description}</Typography>
+          <Typography variant="body2">{t(talent.description)}</Typography>
         )}
       </div>
     );
@@ -97,11 +99,11 @@ const Accordions = ({ data, defaultAccordionData }) => {
         >
           <AccordionSummary expandIcon={content.is_paid ? <LockIcon /> : <ExpandMoreIcon />}>
             <Typography component="span" className="accordion-title">
-              {content.title}
+              {t(content.title)}
             </Typography>
             {content.is_paid && (
               <a href="#" className={`unlock-link ${expanded === index ? 'active' : ''}`}>
-                Разблокировать
+                {t("unlock")}
               </a>
             )}
           </AccordionSummary>
@@ -110,7 +112,7 @@ const Accordions = ({ data, defaultAccordionData }) => {
             <AccordionDetails>
               <Typography
                 variant="body1"
-                dangerouslySetInnerHTML={{ __html: content?.description ?? 'Нет описания' }}
+                dangerouslySetInnerHTML={{ __html: t(content?.description ?? 'noDescription') }}
               />
               {renderNestedTalents(content)}
             </AccordionDetails>

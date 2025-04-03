@@ -8,43 +8,35 @@ export const newChakraData = [
     { name: "1. Муладхара", color: "#EF4444" }
   ];
   
-  export const accordionConfig = [
-    { title: "Личные качества", key: "qualities" },
-    { title: "Кем работать для Души", key: "soulWork" },
-    { title: "Карма и задача 40 лет", key: "karma" },
-    { title: "Точка душевного комфорта", key: "comfortPoint", locked: true },
-    { title: "Самореализация", key: "selfRealization", locked: true },
-    { title: "Задачи, которые тянутся из прошлых жизней", key: "pastLifeTasks", locked: true },
-    { title: "Точка личной силы", key: "personalPower", locked: true },
-    { title: "Сила рода", key: "ancestralStrength", locked: true }
-  ];
+  
   
   export const newPersonalInfo = [
     {
-      title: "Поиск себя:",
-      description: "Соединение мужского и женского. Выстраивание взаимоотношений. Способности, навыки, умения.",
-      skyLabel: "Небо",
+      title: "searchSelf",
+      description: "searchSelfDesc",
+      skyLabel: "sky",
       skyKey: "r",
-      earthLabel: "Земля",
+      earthLabel: "earth",
       earthKey: "s",
       resultKey: "y",
-      spiritLabel: "Духовная гармония",
+      spiritLabel: "spiritualHarmony",
       spiritKey: "w",
-      question: "Духовный зачет. Кто я для бога? Где божественное во мне?"
+      question: "spiritualQuestion1"
     },
     {
-      title: "Социализация:",
-      description: "Социальная и родовая системы. Результаты и признание в социуме.",
-      skyLabel: "M",
+      title: "socialization",
+      description: "socializationDesc",
+      skyLabel: "sky",
       skyKey: "t",
-      earthLabel: "Ж",
+      earthLabel: "earth",
       earthKey: "u",
       resultKey: "v",
-      spiritLabel: "Планетарное",
+      spiritLabel: "planetary",
       spiritKey: "x",
-      question: "Планетарное предназначение человека"
+      question: "spiritualQuestion2"
     }
   ];
+  
   
   export const months = [
     { name: "Январь", value: 1, days: 31 },
@@ -62,13 +54,41 @@ export const newChakraData = [
   ];
   
   export const years = Array.from({ length: 100 }, (_, i) => 2025 - i);
-  export const defaultAccordionData = [
-    { key: 'blocksMoney', title: 'Что блокирует денежную энергию', description: 'Описание личных качеств', is_paid: true },
-    { key: 'destinationSociety', title: 'Предназначение для социума', description: 'Описание работы для души', is_paid: true },
-    { key: 'financeOpportunity', title: 'Самореализация', description: 'Описание кармы и задачи', is_paid: true },
-    { key: 'karmaTask', title: 'Карма и задача 40 лет', description: 'Описание задач из прошлых жизней', is_paid: true },
-    { key: 'talents', title: 'Таланты', description: 'Описание точки комфорта', is_paid: true },
-    { key: 'whatGivesMoney', title: 'Карма и задача 40 лет)', description: 'Описание самореализации', is_paid: true },
-    
-  ];
-  
+export const defaultAccordionData = [
+  {
+    key: 'blocksMoney',
+    title: 'financeAccordion.qualities.title',
+    description: 'financeAccordion.qualities.description',
+    is_paid: true
+  },
+  {
+    key: 'destinationSociety',
+    title: 'financeAccordion.soulWork.title',
+    description: 'financeAccordion.soulWork.description',
+    is_paid: true
+  },
+  {
+    key: 'financeOpportunity',
+    title: 'financeAccordion.karma.title',
+    description: 'financeAccordion.karma.description',
+    is_paid: true
+  },
+  {
+    key: 'karmaTask',
+    title: 'financeAccordion.pastLife.title',
+    description: 'financeAccordion.pastLife.description',
+    is_paid: true
+  },
+  {
+    key: 'talents',
+    title: 'financeAccordion.comfortPoint.title',
+    description: 'financeAccordion.comfortPoint.description',
+    is_paid: true
+  },
+  {
+    key: 'whatGivesMoney',
+    title: 'financeAccordion.selfRealization.title',
+    description: 'financeAccordion.selfRealization.description',
+    is_paid: true
+  }
+];

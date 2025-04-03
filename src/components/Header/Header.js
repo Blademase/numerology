@@ -16,7 +16,7 @@ const Header = () => {
 
   const { t, i18n } = useTranslation() // <--- используем i18n
   const toggleLang = () => {
-    const newLang = i18n.language === "fi" ? "ru" : "fi";
+    const newLang = i18n.language === "fi" ? "en" : "fi";
     i18n.changeLanguage(newLang);
   };
 
@@ -69,7 +69,7 @@ const Header = () => {
         {/* Аутентификация + Переключалка языка */}
         <div className="auth">
           <button className="lang-switch" onClick={toggleLang}>
-            🌐 {i18n.language === "fi" ? "Suomi" : "Рус"}
+            🌐 {i18n.language === "fi" ? "Suomi" : "English"}
           </button>
 
           {isAuthenticated ? (

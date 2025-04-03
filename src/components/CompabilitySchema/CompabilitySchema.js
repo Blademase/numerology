@@ -2,8 +2,10 @@ import React from "react";
 import schema from "../../assets/shemaCompability.png"
 import "./CompabilitySchema.scss"
 import bracket from "../../assets/bezimeni-6-kopiya-8982948.webp"
+import {useTranslation} from "react-i18next";
 
 function CompabilitySchema({numbers = {},personalInfo}) {
+      const { t } = useTranslation();
   return (
     <div className="CompabilitySchemaRlc">
         <div className="CompabilitySchema">
@@ -31,26 +33,26 @@ function CompabilitySchema({numbers = {},personalInfo}) {
           <div key={index}>
             <div className="personalInfoContent">
               <div className="personalInfoLeftTop">
-                <span>{info.title}</span>
-                <p>{info.description}</p>
+                    <span>{t(info.title)}</span>
+                    <p>{t(info.description)}</p>
               </div>
               <div className="personalInfoLeftMiddle">
-                <div className="elements">
-                  <div className="sky">
-                    {info.skyLabel}: <span>{numbers?.[info.skyKey] ?? 0}</span>
-                  </div>
-                  <div className="earth">
-                    {info.earthLabel}: <span>{numbers?.[info.earthKey] ?? 0}</span>
-                  </div>
-                </div>
+                   < div className="elements">
+                    <div className="sky">
+                          {t(info.skyLabel)}: <span>{numbers?.[info.skyKey] ?? 0}</span>
+                    </div>
+                    <div className="earth">
+                          {t(info.earthLabel)}: <span>{numbers?.[info.earthKey] ?? 0}</span>
+                    </div>
+              </div>
                 <img src={bracket} alt="Bracket" />
                 <div className="result">{numbers?.[info.resultKey] ?? 0}</div>
               </div>
               <div className="personalInfoLeftBottom">
-                <div className="spirit">
-                  {info.spiritLabel}<span>{numbers?.[info.spiritKey] ? `:${numbers[info.spiritKey]}` : ""}</span>
-                </div>
-                <div className="question">{info.question}</div>
+                    <div className="spirit">
+                          {t(info.spiritLabel)}: <span>{numbers?.[info.spiritKey] ?? 0}</span>
+                    </div>
+                    <div className="question">{t(info.question)}</div>
               </div>
             </div>
             {index < personalInfo.length - 1 && <div className="horizontalLine"></div>}
