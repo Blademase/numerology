@@ -215,11 +215,7 @@ financeAccordion: {
           title: "Relationships in the matrix",
           description: "Description of relationships in the matrix"
         },
-        training: {
-          learnAbout: "LEARN ABOUT",
-          title: "DESTINY MATRIX TRAINING",
-          go: "GO"
-        },
+
         matrixMoney: {
           title: "Money in the matrix",
           description: "Description of money in the matrix"
@@ -349,6 +345,11 @@ financeAccordion: {
         socializationDesc: "Social and ancestral systems. Achievements and recognition in society.",
         spiritualQuestion1: "Spiritual exam. Who am I to God? Where is the divine within me?",
         spiritualQuestion2: "Planetary purpose of a person",
+      },
+      training: {
+        learnAbout: "LEARN ABOUT",
+        title: "DESTINY MATRIX TRAINING",
+        go: "GO"
       },
       months: {
         1: "January",
