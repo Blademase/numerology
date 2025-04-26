@@ -88,20 +88,19 @@ financeAccordion: {
     title: "Карта здоровья",
     description: "Описание карты здоровья"
   },
-  total:"Общий прогноз",
-  january:"Январь",
-  feb:"Феварль",
-  march:"Март",
-  april:"Апрель",
-  may:"Май",
-  june:"Июнь",
-  july:"Июль",
-  august:"Август",
-  sep:"Сентябрь",
-  okt:"Октябрь",
-  nov:"Ноябрь",
-  dec:"Декабрь"
-
+  "total": "Yleinen ennuste",
+    "january": "Tammikuu",
+    "feb": "Helmikuu",
+    "march": "Maaliskuu",
+    "april": "Huhtikuu",
+    "may": "Toukokuu",
+    "june": "Kesäkuu",
+    "july": "Heinäkuu",
+    "august": "Elokuu",
+    "sep": "Syyskuu",
+    "okt": "Lokakuu",
+    "nov": "Marraskuu",
+    "dec": "Joulukuu"
 }
 ,
       // Header + UI
