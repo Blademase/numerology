@@ -92,7 +92,7 @@ function Compatibility() {
         setCombinedData({});
 
         try {
-            const compatibilityResponse = await api.post(`api/compatibility/calculate-full-compatibility/`, {
+            const compatibilityResponse = await api.post(`compatibility/calculate-full-compatibility/`, {
                 day1,
                 month1: month.value,
                 year1,
