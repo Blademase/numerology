@@ -112,7 +112,7 @@ function Child() {
 
     try {
       const response = await axios.post(
-          "https://numerology-calculator.fi/child/guest-child-pdf/",
+          "https://numerology-calculator.fi/api/child/guest-child-pdf/",
           payload,
           {
             responseType: "blob"
@@ -185,7 +185,7 @@ function Child() {
         <button className='downloadBtn' onClick={handleDownload}>{t("financePage.download")}</button>
 
         <div className="accordions">
-          <Accordions data={combinedData} defaultAccordionData={defaultAccordionData} />
+          <Accordions data={combinedData} />
         </div>
 
         <DateDecodingCard />

@@ -8,11 +8,9 @@ import DateDecodingCard from "../../components/DateDecodingCard/DateDecodingCard
 
 import {
   newChakraData,
-  accordionConfig,
   newPersonalInfo,
   months,
   years,
-  defaultAccordionData
 } from "./constants";
 
 import {
@@ -101,7 +99,7 @@ function Finance() {
 
     try {
       const response = await axios.post(
-          "https://numerology-calculator.fi/finance/guest-finance-pdf/",
+          "https://numerology-calculator.fi/api/finance/guest-finance-pdf/",
           payload,
           {
             responseType: "blob"
@@ -177,7 +175,7 @@ function Finance() {
         </div>
         <button className='downloadBtn' onClick={handleDownload}>{t("financePage.download")}</button>
         <div className="accordions">
-          <Accordions data={combinedData} defaultAccordionData={defaultAccordionData} />
+          <Accordions data={combinedData}  />
         </div>
 
         <DateDecodingCard />
