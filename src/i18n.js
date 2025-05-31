@@ -291,6 +291,7 @@ financeAccordion: {
       child: "Child",
       prognosis: "Forecast 2025",
       login: "Login",
+      programs: "Programs",
       cabinet: "My Cabinet",
       unlock: "Unlock",
       noDescription: "No description",
@@ -330,7 +331,7 @@ financeAccordion: {
         category: "Category",
         date: "Date",
         action: "Action",
-        open: "Lataa",
+        open: "Download",
         loading: "Loading data..."
       },
       footer: {
@@ -386,7 +387,7 @@ financeAccordion: {
         category: "Kategoria",
         date: "Päivämäärä",
         action: "Toiminto",
-        open: "AVAA",
+        open: "Lataa",
         loading: "Ladataan tietoja..."
       },
 
@@ -445,6 +446,7 @@ financeAccordion: {
       child: "Lapsi",
       prognosis: "Vuoden 2025 ennuste",
       login: "Kirjaudu",
+      programs: "Ohjelmat",
       cabinet: "Oma tili",
       unlock: "Avaa",
       noDescription: "Ei kuvausta",
