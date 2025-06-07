@@ -33,6 +33,7 @@ function Compatibility() {
     const [year, setYear] = useState(2025);
     const [month, setMonth] = useState(months[0]);
     const [day, setDay] = useState(1);
+    const [matchedPrograms, setMatchedPrograms] = useState([]);
 
     const [year1, setYear1] = useState(2025);
     const [month1, setMonth1] = useState(months[0]);
@@ -93,9 +94,9 @@ function Compatibility() {
 
         try {
             const compatibilityResponse = await api.post(`compatibility/calculate-full-compatibility/`, {
-                day1,
+                day1: day,
                 month1: month.value,
-                year1,
+                year1:year,
                 day2: day1,
                 month2: month1.value,
                 year2: year1,
@@ -105,6 +106,7 @@ function Compatibility() {
             setNumerologyData(compatibilityResponse.data.matrix.compatibility_matrix);
             setNumerologyData1(compatibilityResponse.data?.matrix.matrix1);
             setNumerologyData2(compatibilityResponse.data?.matrix.matrix2);
+            setMatchedPrograms(compatibilityResponse.data?.matrix?.matched_programs || []);
 
             const requests = [
                 getChildBusiness(data1),
@@ -228,7 +230,7 @@ function Compatibility() {
                     <CompabilitySchema personalInfo={newPersonalInfo} numbers={numerologyData} />
                 </div>
 
-                <Accordions data={combinedData} programs={numerologyData.matched_programs} />
+                <Accordions data={combinedData} programs={matchedPrograms} />
             </div>
 
             <DateDecodingCard />
