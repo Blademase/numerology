@@ -142,34 +142,33 @@ const Accordions = ({ data, programs }) => {
                   {programs.map((program, idx) => {
                     const key = `program-inner-${idx}`;
                     const isInnerExpanded = expandedPrograms.includes(key);
-                    const isAuthorized = !!accessToken;
-                    const programKeys = Object.keys(program);
-                    const isLockedProgram = programKeys.length === 1 && programKeys[0] === "name";
+                    const isPaid = program?.is_paid===true;
 
                     return (
                         <div className="program-item" key={key}>
                           <div
                               className="program-header"
                               onClick={() => {
-                                if (!isLockedProgram && isAuthorized) toggleProgram(key);
+                                if (!isPaid) toggleProgram(key);
                               }}
-                              style={{ cursor: !isLockedProgram && isAuthorized ? 'pointer' : 'default' }}
+                              style={{ cursor: !isPaid? 'pointer' : 'default' }}
                           >
-                            {isLockedProgram || !isAuthorized ? (
+                            {isPaid ? (
                                 <LockIcon fontSize="small" />
                             ) : isInnerExpanded ? (
                                 <KeyboardArrowDownIcon fontSize="small" />
                             ) : (
                                 <KeyboardArrowUpIcon fontSize="small" />
                             )}
+
                             <Typography variant="body2">
-                              {isLockedProgram || !isAuthorized
+                              {isPaid
                                   ? t(program.name)
                                   : `${program.marker_1_value}-${program.marker_2_value}-${program.marker_3_value} ${t(program.name)}`}
                             </Typography>
                           </div>
 
-                          {!isLockedProgram && isAuthorized && isInnerExpanded && (
+                          {!isPaid && isInnerExpanded && (
                               <div className="program-description">
                                 <Typography
                                     variant="body2"
@@ -182,6 +181,7 @@ const Accordions = ({ data, programs }) => {
                         </div>
                     );
                   })}
+
                 </div>
               </AccordionDetails>
             </Accordion>
