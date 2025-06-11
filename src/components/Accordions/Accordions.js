@@ -25,11 +25,12 @@ const Accordions = ({ data, programs }) => {
       const val = Array.isArray(value) && value.length > 0 ? value[0] : value;
       const realCategory = val?.category?.category || val?.category || {};
       const isPaid = realCategory?.is_paid ?? val?.is_paid ?? false;
+      const description = val?.description || realCategory?.description || '';
 
       return {
         key,
         title: realCategory?.title || val?.title || key,
-        description: val?.description || '',
+        description,
         is_paid: isPaid,
         category: realCategory
       };
@@ -68,7 +69,7 @@ const Accordions = ({ data, programs }) => {
 
   const renderNestedTalents = (content) => {
     if (content.is_paid) return null;
-
+    console.log(content)
     const talents = [];
 
     if (typeof content.category === 'object') {
@@ -102,6 +103,7 @@ const Accordions = ({ data, programs }) => {
               >
                 <Typography component="span" className="accordion-title">
                   {t(content.title)}
+
                 </Typography>
                 {content.is_paid && (
                     <a
@@ -120,14 +122,16 @@ const Accordions = ({ data, programs }) => {
                     <Typography
                         variant="body1"
                         dangerouslySetInnerHTML={{
-                          __html: t(content.description || 'noDescription'),
+                          __html: content?.description || '<p>No description</p>',
                         }}
                     />
+
                     {renderNestedTalents(content)}
                   </AccordionDetails>
               )}
             </Accordion>
         ))}
+
 
         {/* Программы */}
         {programs && programs.length > 0 && (
